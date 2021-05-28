@@ -120,20 +120,11 @@
   <data name="app_error_CreacionNuevaTiendaFallo" xml:space="preserve">
     <value>Lo sentimos en estos momentos no es posible registrar la tienda Vuelva a intentarlo mas tarde por favor.</value>
   </data>
-  <data name="app_excepcion_CompraNuloParaRegistrarla" xml:space="preserve">
-    <value>Compra es nula para registrarla.</value>
-  </data>
-  <data name="app_excepcion_CuotaProgresolNuloParaActualizarlo" xml:space="preserve">
-    <value>Cuota progresol es nula para actualizarla.</value>
-  </data>
-  <data name="app_excepcion_ProveedorNuloParaActualizarlo" xml:space="preserve">
-    <value>Proveedor es nulo para registrarla.</value>
+  <data name="app_excepcion_TiendaNuloParaRegistrarla" xml:space="preserve">
+    <value>Falta información para la creación de la tienda</value>
   </data>
   <data name="app_informacion_CreacionNuevaTiendaOk" xml:space="preserve">
     <value>La Tienda se registro satisfactoriamente.</value>
-  </data>
-  <data name="app_validacion_MaterialesNoEncontradosParaRelacionarProveedorMateriales" xml:space="preserve">
-    <value>Materiales no encontrados para relacionar con proveedor y sus materiales.</value>
   </data>
   <data name="app_validacion_ProgresolInvalidoParaGenerarCompra" xml:space="preserve">
     <value>Progresol asociado a la compra no puede ser uno invalido o nulo.</value>
@@ -153,79 +144,10 @@
   <data name="app_validacion_TiendaSinTipoDePago" xml:space="preserve">
     <value>Rango Tipo de pago es invalido para actualizar la relacion Tienda.</value>
   </data>
-  <data name="app_validacion_TipoCompraInvalidoParaGenerarCompra" xml:space="preserve">
-    <value>Tipo compra asociado a la compra no puede ser uno invalido o nulo.</value>
+  <data name="validacion_TiempoEntregaMenorIgualCero" xml:space="preserve">
+    <value>El tiempo de entrega es invalido para la creación de la Tienda</value>
   </data>
-  <data name="dominio_validacion_AbreviaturaTipoProveedorNuloOVacio" xml:space="preserve">
-    <value>La abreviatura del tipo de proveedor no puede ser nulo o vacío.</value>
-  </data>
-  <data name="dominio_validacion_CantidadDeCompraDetalleMenorIgualCero" xml:space="preserve">
-    <value>La cantidad de material en el detalle de la compra no puede ser menor o igual a cero.</value>
-  </data>
-  <data name="dominio_validacion_CodigoCompraDeCompraDetalleVacio" xml:space="preserve">
-    <value>El código de compra del detalle de la compra no puede ser vacío.</value>
-  </data>
-  <data name="dominio_validacion_CodigoCuotaProgresolDeDetalleCuotaProgresolInvalido" xml:space="preserve">
-    <value>El código de cuota del progresol no puede ser vacío en los detalles de la cuota.</value>
-  </data>
-  <data name="dominio_validacion_CodigoMaterialDeDetalleCuotaProgresolInvalido" xml:space="preserve">
-    <value>El código de material no puede ser vacío en los detalles de la cuota.</value>
-  </data>
-  <data name="dominio_validacion_CodigoMaterialDeProveedorMaterialInvalido" xml:space="preserve">
-    <value>El código de material de la relación proveedor material no puede ser vacío.</value>
-  </data>
-  <data name="dominio_validacion_CodigoProveedorDeProveedorMaterialInvalido" xml:space="preserve">
-    <value>El código de proveedor de la relación proveedor material no puede ser vacío.</value>
-  </data>
-  <data name="dominio_validacion_CuotaProgresolNuloActualizaCuotaCompletada" xml:space="preserve">
-    <value>Cuota es invalido para actualizar la cuota completada del progresol.</value>
-  </data>
-  <data name="dominio_validacion_DescripcionTipoCompraNuloOVacio" xml:space="preserve">
-    <value>La descripción del tipo de compra no puede ser nulo o vacío.</value>
-  </data>
-  <data name="dominio_validacion_DescripcionTipoProveedorNuloOVacio" xml:space="preserve">
-    <value>La descripción del tipo de proveedor no puede ser nulo o vacío.</value>
-  </data>
-  <data name="dominio_validacion_DiasMaximoParaRegistroCompra" xml:space="preserve">
-    <value>La cantidad máxima de días retraso de un registro de compra no puede ser menor o igual a cero.</value>
-  </data>
-  <data name="dominio_validacion_FechaCompraMayorAActualParaGenerarCompra" xml:space="preserve">
-    <value>Fecha compra asociado a la compra excede a la fecha de hoy, debe registrarse como máximo hasta la fecha actual.</value>
-  </data>
-  <data name="dominio_validacion_LimiteCuotaDeCuotaProgresolNuloOVacio" xml:space="preserve">
-    <value>El limite de la cuota progresol no puede ser menor igual a cero.</value>
-  </data>
-  <data name="dominio_validacion_LimiteCuotaDeDetalleCuotaProgresolMenorIgualCero" xml:space="preserve">
-    <value>El monto limite cuota por material no puede ser menor o igual a cero en los detalles de la cuota.</value>
-  </data>
-  <data name="dominio_validacion_LimiteFechaCompraParaGenerarCompra" xml:space="preserve">
-    <value>Fecha compra asociado a la compra excede el rango de dias permito (7 dias).</value>
-  </data>
-  <data name="dominio_validacion_LocalProgresolDeCuotaProgresolNuloOVacio" xml:space="preserve">
-    <value>El local del progresol de la cuota progresol no puede ser nulo o vacío.</value>
-  </data>
-  <data name="dominio_validacion_MaterialDeCompraDetalleNulo" xml:space="preserve">
-    <value>Material asignado a detalle de compra no puede ser nulo o en estado transitorio.</value>
-  </data>
-  <data name="dominio_validacion_NombreORazonSocialDeProveedorNuloOVacio" xml:space="preserve">
-    <value>El nombre o razón social del proveedor no puede ser nulo o vacío.</value>
-  </data>
-  <data name="dominio_validacion_PeriodoDeCuotaProgresolNuloOVacio" xml:space="preserve">
-    <value>El periodo de la cuota progresol no puede ser nulo o vacío.</value>
-  </data>
-  <data name="dominio_validacion_ProgresolInactivoParaGenerarCompra" xml:space="preserve">
-    <value>Progresol asociado a la compra se encuentra en estado inactivo.</value>
-  </data>
-  <data name="dominio_validacion_ProveedorDeCompraNulo" xml:space="preserve">
-    <value>Proveedor asignado a compra no puede ser nulo o en estado transitorio.</value>
-  </data>
-  <data name="dominio_validacion_ProveedorInactivoParaGenerarCompra" xml:space="preserve">
-    <value>Proveedor asociado a la compra se encuentra en estado inactivo.</value>
-  </data>
-  <data name="dominio_validacion_TipoProgresolDeProveedorNuloOVacio" xml:space="preserve">
-    <value>El tipo progresol del proveedor no puede ser nulo o vacío.</value>
-  </data>
-  <data name="dominio_validacion_TipoProveedorDeProveedorNulo" xml:space="preserve">
-    <value>Tipo proveedor asignado a proveedor no puede ser nulo o en estado transitorio.</value>
+  <data name="validacion_TipoPagoMenorIgualCero" xml:space="preserve">
+    <value>El tipo de pago es invalido para la creación de la Tienda</value>
   </data>
 </root>

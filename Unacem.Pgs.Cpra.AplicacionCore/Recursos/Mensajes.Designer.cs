@@ -70,29 +70,11 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Compra es nula para registrarla..
+        ///   Busca una cadena traducida similar a Falta información para la creación de la tienda.
         /// </summary>
-        internal static string app_excepcion_CompraNuloParaRegistrarla {
+        internal static string app_excepcion_TiendaNuloParaRegistrarla {
             get {
-                return ResourceManager.GetString("app_excepcion_CompraNuloParaRegistrarla", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Cuota progresol es nula para actualizarla..
-        /// </summary>
-        internal static string app_excepcion_CuotaProgresolNuloParaActualizarlo {
-            get {
-                return ResourceManager.GetString("app_excepcion_CuotaProgresolNuloParaActualizarlo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Proveedor es nulo para registrarla..
-        /// </summary>
-        internal static string app_excepcion_ProveedorNuloParaActualizarlo {
-            get {
-                return ResourceManager.GetString("app_excepcion_ProveedorNuloParaActualizarlo", resourceCulture);
+                return ResourceManager.GetString("app_excepcion_TiendaNuloParaRegistrarla", resourceCulture);
             }
         }
         
@@ -102,15 +84,6 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
         internal static string app_informacion_CreacionNuevaTiendaOk {
             get {
                 return ResourceManager.GetString("app_informacion_CreacionNuevaTiendaOk", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Materiales no encontrados para relacionar con proveedor y sus materiales..
-        /// </summary>
-        internal static string app_validacion_MaterialesNoEncontradosParaRelacionarProveedorMateriales {
-            get {
-                return ResourceManager.GetString("app_validacion_MaterialesNoEncontradosParaRelacionarProveedorMateriales", resourceCulture);
             }
         }
         
@@ -169,227 +142,20 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Tipo compra asociado a la compra no puede ser uno invalido o nulo..
+        ///   Busca una cadena traducida similar a El tiempo de entrega es invalido para la creación de la Tienda.
         /// </summary>
-        internal static string app_validacion_TipoCompraInvalidoParaGenerarCompra {
+        internal static string validacion_TiempoEntregaMenorIgualCero {
             get {
-                return ResourceManager.GetString("app_validacion_TipoCompraInvalidoParaGenerarCompra", resourceCulture);
+                return ResourceManager.GetString("validacion_TiempoEntregaMenorIgualCero", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a La abreviatura del tipo de proveedor no puede ser nulo o vacío..
+        ///   Busca una cadena traducida similar a El tipo de pago es invalido para la creación de la Tienda.
         /// </summary>
-        internal static string dominio_validacion_AbreviaturaTipoProveedorNuloOVacio {
+        internal static string validacion_TipoPagoMenorIgualCero {
             get {
-                return ResourceManager.GetString("dominio_validacion_AbreviaturaTipoProveedorNuloOVacio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a La cantidad de material en el detalle de la compra no puede ser menor o igual a cero..
-        /// </summary>
-        internal static string dominio_validacion_CantidadDeCompraDetalleMenorIgualCero {
-            get {
-                return ResourceManager.GetString("dominio_validacion_CantidadDeCompraDetalleMenorIgualCero", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El código de compra del detalle de la compra no puede ser vacío..
-        /// </summary>
-        internal static string dominio_validacion_CodigoCompraDeCompraDetalleVacio {
-            get {
-                return ResourceManager.GetString("dominio_validacion_CodigoCompraDeCompraDetalleVacio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El código de cuota del progresol no puede ser vacío en los detalles de la cuota..
-        /// </summary>
-        internal static string dominio_validacion_CodigoCuotaProgresolDeDetalleCuotaProgresolInvalido {
-            get {
-                return ResourceManager.GetString("dominio_validacion_CodigoCuotaProgresolDeDetalleCuotaProgresolInvalido", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El código de material no puede ser vacío en los detalles de la cuota..
-        /// </summary>
-        internal static string dominio_validacion_CodigoMaterialDeDetalleCuotaProgresolInvalido {
-            get {
-                return ResourceManager.GetString("dominio_validacion_CodigoMaterialDeDetalleCuotaProgresolInvalido", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El código de material de la relación proveedor material no puede ser vacío..
-        /// </summary>
-        internal static string dominio_validacion_CodigoMaterialDeProveedorMaterialInvalido {
-            get {
-                return ResourceManager.GetString("dominio_validacion_CodigoMaterialDeProveedorMaterialInvalido", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El código de proveedor de la relación proveedor material no puede ser vacío..
-        /// </summary>
-        internal static string dominio_validacion_CodigoProveedorDeProveedorMaterialInvalido {
-            get {
-                return ResourceManager.GetString("dominio_validacion_CodigoProveedorDeProveedorMaterialInvalido", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Cuota es invalido para actualizar la cuota completada del progresol..
-        /// </summary>
-        internal static string dominio_validacion_CuotaProgresolNuloActualizaCuotaCompletada {
-            get {
-                return ResourceManager.GetString("dominio_validacion_CuotaProgresolNuloActualizaCuotaCompletada", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a La descripción del tipo de compra no puede ser nulo o vacío..
-        /// </summary>
-        internal static string dominio_validacion_DescripcionTipoCompraNuloOVacio {
-            get {
-                return ResourceManager.GetString("dominio_validacion_DescripcionTipoCompraNuloOVacio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a La descripción del tipo de proveedor no puede ser nulo o vacío..
-        /// </summary>
-        internal static string dominio_validacion_DescripcionTipoProveedorNuloOVacio {
-            get {
-                return ResourceManager.GetString("dominio_validacion_DescripcionTipoProveedorNuloOVacio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a La cantidad máxima de días retraso de un registro de compra no puede ser menor o igual a cero..
-        /// </summary>
-        internal static string dominio_validacion_DiasMaximoParaRegistroCompra {
-            get {
-                return ResourceManager.GetString("dominio_validacion_DiasMaximoParaRegistroCompra", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Fecha compra asociado a la compra excede a la fecha de hoy, debe registrarse como máximo hasta la fecha actual..
-        /// </summary>
-        internal static string dominio_validacion_FechaCompraMayorAActualParaGenerarCompra {
-            get {
-                return ResourceManager.GetString("dominio_validacion_FechaCompraMayorAActualParaGenerarCompra", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El limite de la cuota progresol no puede ser menor igual a cero..
-        /// </summary>
-        internal static string dominio_validacion_LimiteCuotaDeCuotaProgresolNuloOVacio {
-            get {
-                return ResourceManager.GetString("dominio_validacion_LimiteCuotaDeCuotaProgresolNuloOVacio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El monto limite cuota por material no puede ser menor o igual a cero en los detalles de la cuota..
-        /// </summary>
-        internal static string dominio_validacion_LimiteCuotaDeDetalleCuotaProgresolMenorIgualCero {
-            get {
-                return ResourceManager.GetString("dominio_validacion_LimiteCuotaDeDetalleCuotaProgresolMenorIgualCero", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Fecha compra asociado a la compra excede el rango de dias permito (7 dias)..
-        /// </summary>
-        internal static string dominio_validacion_LimiteFechaCompraParaGenerarCompra {
-            get {
-                return ResourceManager.GetString("dominio_validacion_LimiteFechaCompraParaGenerarCompra", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El local del progresol de la cuota progresol no puede ser nulo o vacío..
-        /// </summary>
-        internal static string dominio_validacion_LocalProgresolDeCuotaProgresolNuloOVacio {
-            get {
-                return ResourceManager.GetString("dominio_validacion_LocalProgresolDeCuotaProgresolNuloOVacio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Material asignado a detalle de compra no puede ser nulo o en estado transitorio..
-        /// </summary>
-        internal static string dominio_validacion_MaterialDeCompraDetalleNulo {
-            get {
-                return ResourceManager.GetString("dominio_validacion_MaterialDeCompraDetalleNulo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El nombre o razón social del proveedor no puede ser nulo o vacío..
-        /// </summary>
-        internal static string dominio_validacion_NombreORazonSocialDeProveedorNuloOVacio {
-            get {
-                return ResourceManager.GetString("dominio_validacion_NombreORazonSocialDeProveedorNuloOVacio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El periodo de la cuota progresol no puede ser nulo o vacío..
-        /// </summary>
-        internal static string dominio_validacion_PeriodoDeCuotaProgresolNuloOVacio {
-            get {
-                return ResourceManager.GetString("dominio_validacion_PeriodoDeCuotaProgresolNuloOVacio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Progresol asociado a la compra se encuentra en estado inactivo..
-        /// </summary>
-        internal static string dominio_validacion_ProgresolInactivoParaGenerarCompra {
-            get {
-                return ResourceManager.GetString("dominio_validacion_ProgresolInactivoParaGenerarCompra", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Proveedor asignado a compra no puede ser nulo o en estado transitorio..
-        /// </summary>
-        internal static string dominio_validacion_ProveedorDeCompraNulo {
-            get {
-                return ResourceManager.GetString("dominio_validacion_ProveedorDeCompraNulo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Proveedor asociado a la compra se encuentra en estado inactivo..
-        /// </summary>
-        internal static string dominio_validacion_ProveedorInactivoParaGenerarCompra {
-            get {
-                return ResourceManager.GetString("dominio_validacion_ProveedorInactivoParaGenerarCompra", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a El tipo progresol del proveedor no puede ser nulo o vacío..
-        /// </summary>
-        internal static string dominio_validacion_TipoProgresolDeProveedorNuloOVacio {
-            get {
-                return ResourceManager.GetString("dominio_validacion_TipoProgresolDeProveedorNuloOVacio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Tipo proveedor asignado a proveedor no puede ser nulo o en estado transitorio..
-        /// </summary>
-        internal static string dominio_validacion_TipoProveedorDeProveedorNulo {
-            get {
-                return ResourceManager.GetString("dominio_validacion_TipoProveedorDeProveedorNulo", resourceCulture);
+                return ResourceManager.GetString("validacion_TipoPagoMenorIgualCero", resourceCulture);
             }
         }
     }

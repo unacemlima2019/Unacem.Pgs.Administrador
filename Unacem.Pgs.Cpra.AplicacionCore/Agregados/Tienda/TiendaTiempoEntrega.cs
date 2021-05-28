@@ -25,7 +25,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
         {
             //Poner mensaje
             if (pCodTiempoEntrega <= 0)
-                throw new ProgresolExcepcionDominio(Mensajes.dominio_validacion_CantidadDeCompraDetalleMenorIgualCero);
+                throw new ProgresolExcepcionDominio(Mensajes.validacion_TiempoEntregaMenorIgualCero);
 
             _CodTiempoEntrega = pCodTiempoEntrega;
             _CodTiendaProgresol = pCodTiendaProgresol;

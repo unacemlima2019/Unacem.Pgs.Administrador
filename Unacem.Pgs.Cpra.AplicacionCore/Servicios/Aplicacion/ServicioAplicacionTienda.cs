@@ -213,7 +213,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
         private async Task<bool> GrabarTienda(TiendaProgresol pTienda)
         {
             if(pTienda==null)//cambiar mensaje
-                throw new ArgumentNullException(Mensajes.app_excepcion_CompraNuloParaRegistrarla);
+                throw new ArgumentNullException(Mensajes.app_excepcion_TiendaNuloParaRegistrarla);
 
             _IRepositorioTiendaProgresol.Agregar(pTienda);
 
@@ -251,16 +251,16 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
             return NuevaTienda;
         }
 
-        private bool ActualizarTiendaProgresol(TiendaProgresol pTiendaProgresol)
-        {
-            if (pTiendaProgresol == null)
-                //mensaje poner
-                throw new ArgumentNullException(Mensajes.app_excepcion_ProveedorNuloParaActualizarlo);
+        //private bool ActualizarTiendaProgresol(TiendaProgresol pTiendaProgresol)
+        //{
+        //    if (pTiendaProgresol == null)
+        //        //mensaje poner
+        //        throw new ArgumentNullException(Mensajes.app_excepcion_ProveedorNuloParaActualizarlo);
 
-            _IRepositorioTiendaProgresol.Actualizar(pTiendaProgresol);
+        //    _IRepositorioTiendaProgresol.Actualizar(pTiendaProgresol);
 
-            return true;
-        }
+        //    return true;
+        //}
 
         //private bool ActualizarRelacionProveedorMaterial(Proveedor pProveedor)
         //{
