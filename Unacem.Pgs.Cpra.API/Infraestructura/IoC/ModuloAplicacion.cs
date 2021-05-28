@@ -9,7 +9,6 @@ using Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion;
 using Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda;
 using Unacem.Pgs.Cpra.Infraestructura.Base;
 
-using Unacem.Pgs.Cpra.Infraestructura.Datos.Repositorios.Compras;
 using Unacem.Pgs.Cpra.Infraestructura.Datos.Repositorios.Log;
 using Unacem.Pgs.Cpra.Infraestructura.Net.Adaptador;
 using Unacem.Pgs.Cpra.Infraestructura.Net.Archivos;

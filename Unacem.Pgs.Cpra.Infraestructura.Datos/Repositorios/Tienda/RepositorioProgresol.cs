@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
 using Unacem.Pgs.AplicacionCore.DominioBase;
+using Unacem.Pgs.Cpra.Infraestructura.Datos;
 
-
-
-namespace Unacem.Pgs.Cpra.Infraestructura.Datos.Repositorios.Compras
+namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
 {
     public class RepositorioProgresol : IRepositorioProgresol
     {
