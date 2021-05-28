@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="app_error_CreacionNuevaTiendaFallo" xml:space="preserve">
+    <value>Lo sentimos en estos momentos no es posible registrar la tienda Vuelva a intentarlo mas tarde por favor.</value>
+  </data>
+  <data name="app_excepcion_CompraNuloParaRegistrarla" xml:space="preserve">
+    <value>Compra es nula para registrarla.</value>
+  </data>
+  <data name="app_excepcion_CuotaProgresolNuloParaActualizarlo" xml:space="preserve">
+    <value>Cuota progresol es nula para actualizarla.</value>
+  </data>
+  <data name="app_excepcion_ProveedorNuloParaActualizarlo" xml:space="preserve">
+    <value>Proveedor es nulo para registrarla.</value>
+  </data>
+  <data name="app_informacion_CreacionNuevaTiendaOk" xml:space="preserve">
+    <value>La Tienda se registro satisfactoriamente.</value>
+  </data>
+  <data name="app_validacion_MaterialesNoEncontradosParaRelacionarProveedorMateriales" xml:space="preserve">
+    <value>Materiales no encontrados para relacionar con proveedor y sus materiales.</value>
+  </data>
+  <data name="app_validacion_ProgresolInvalidoParaGenerarCompra" xml:space="preserve">
+    <value>Progresol asociado a la compra no puede ser uno invalido o nulo.</value>
+  </data>
+  <data name="app_validacion_TiendaCondicionDelivery" xml:space="preserve">
+    <value>Rango Tienda Condición Delivery es invalido para actualizar la relacion Tienda.</value>
+  </data>
+  <data name="app_validacion_TiendaSinProductosDestacados" xml:space="preserve">
+    <value>Rango Productos destacados es invalido para actualizar la relacion Tienda.</value>
+  </data>
+  <data name="app_validacion_TiendaSinRangoDiaAtencion" xml:space="preserve">
+    <value>Rango de día de atención es invalido para actualizar la relacion Tienda.</value>
+  </data>
+  <data name="app_validacion_TiendaSinTiempoEntrega" xml:space="preserve">
+    <value>Rango Tiempo entrega es invalido para actualizar la relacion Tienda.</value>
+  </data>
+  <data name="app_validacion_TiendaSinTipoDePago" xml:space="preserve">
+    <value>Rango Tipo de pago es invalido para actualizar la relacion Tienda.</value>
+  </data>
+  <data name="app_validacion_TipoCompraInvalidoParaGenerarCompra" xml:space="preserve">
+    <value>Tipo compra asociado a la compra no puede ser uno invalido o nulo.</value>
+  </data>
+  <data name="dominio_validacion_AbreviaturaTipoProveedorNuloOVacio" xml:space="preserve">
+    <value>La abreviatura del tipo de proveedor no puede ser nulo o vacío.</value>
+  </data>
+  <data name="dominio_validacion_CantidadDeCompraDetalleMenorIgualCero" xml:space="preserve">
+    <value>La cantidad de material en el detalle de la compra no puede ser menor o igual a cero.</value>
+  </data>
+  <data name="dominio_validacion_CodigoCompraDeCompraDetalleVacio" xml:space="preserve">
+    <value>El código de compra del detalle de la compra no puede ser vacío.</value>
+  </data>
+  <data name="dominio_validacion_CodigoCuotaProgresolDeDetalleCuotaProgresolInvalido" xml:space="preserve">
+    <value>El código de cuota del progresol no puede ser vacío en los detalles de la cuota.</value>
+  </data>
+  <data name="dominio_validacion_CodigoMaterialDeDetalleCuotaProgresolInvalido" xml:space="preserve">
+    <value>El código de material no puede ser vacío en los detalles de la cuota.</value>
+  </data>
+  <data name="dominio_validacion_CodigoMaterialDeProveedorMaterialInvalido" xml:space="preserve">
+    <value>El código de material de la relación proveedor material no puede ser vacío.</value>
+  </data>
+  <data name="dominio_validacion_CodigoProveedorDeProveedorMaterialInvalido" xml:space="preserve">
+    <value>El código de proveedor de la relación proveedor material no puede ser vacío.</value>
+  </data>
+  <data name="dominio_validacion_CuotaProgresolNuloActualizaCuotaCompletada" xml:space="preserve">
+    <value>Cuota es invalido para actualizar la cuota completada del progresol.</value>
+  </data>
+  <data name="dominio_validacion_DescripcionTipoCompraNuloOVacio" xml:space="preserve">
+    <value>La descripción del tipo de compra no puede ser nulo o vacío.</value>
+  </data>
+  <data name="dominio_validacion_DescripcionTipoProveedorNuloOVacio" xml:space="preserve">
+    <value>La descripción del tipo de proveedor no puede ser nulo o vacío.</value>
+  </data>
+  <data name="dominio_validacion_DiasMaximoParaRegistroCompra" xml:space="preserve">
+    <value>La cantidad máxima de días retraso de un registro de compra no puede ser menor o igual a cero.</value>
+  </data>
+  <data name="dominio_validacion_FechaCompraMayorAActualParaGenerarCompra" xml:space="preserve">
+    <value>Fecha compra asociado a la compra excede a la fecha de hoy, debe registrarse como máximo hasta la fecha actual.</value>
+  </data>
+  <data name="dominio_validacion_LimiteCuotaDeCuotaProgresolNuloOVacio" xml:space="preserve">
+    <value>El limite de la cuota progresol no puede ser menor igual a cero.</value>
+  </data>
+  <data name="dominio_validacion_LimiteCuotaDeDetalleCuotaProgresolMenorIgualCero" xml:space="preserve">
+    <value>El monto limite cuota por material no puede ser menor o igual a cero en los detalles de la cuota.</value>
+  </data>
+  <data name="dominio_validacion_LimiteFechaCompraParaGenerarCompra" xml:space="preserve">
+    <value>Fecha compra asociado a la compra excede el rango de dias permito (7 dias).</value>
+  </data>
+  <data name="dominio_validacion_LocalProgresolDeCuotaProgresolNuloOVacio" xml:space="preserve">
+    <value>El local del progresol de la cuota progresol no puede ser nulo o vacío.</value>
+  </data>
+  <data name="dominio_validacion_MaterialDeCompraDetalleNulo" xml:space="preserve">
+    <value>Material asignado a detalle de compra no puede ser nulo o en estado transitorio.</value>
+  </data>
+  <data name="dominio_validacion_NombreORazonSocialDeProveedorNuloOVacio" xml:space="preserve">
+    <value>El nombre o razón social del proveedor no puede ser nulo o vacío.</value>
+  </data>
+  <data name="dominio_validacion_PeriodoDeCuotaProgresolNuloOVacio" xml:space="preserve">
+    <value>El periodo de la cuota progresol no puede ser nulo o vacío.</value>
+  </data>
+  <data name="dominio_validacion_ProgresolInactivoParaGenerarCompra" xml:space="preserve">
+    <value>Progresol asociado a la compra se encuentra en estado inactivo.</value>
+  </data>
+  <data name="dominio_validacion_ProveedorDeCompraNulo" xml:space="preserve">
+    <value>Proveedor asignado a compra no puede ser nulo o en estado transitorio.</value>
+  </data>
+  <data name="dominio_validacion_ProveedorInactivoParaGenerarCompra" xml:space="preserve">
+    <value>Proveedor asociado a la compra se encuentra en estado inactivo.</value>
+  </data>
+  <data name="dominio_validacion_TipoProgresolDeProveedorNuloOVacio" xml:space="preserve">
+    <value>El tipo progresol del proveedor no puede ser nulo o vacío.</value>
+  </data>
+  <data name="dominio_validacion_TipoProveedorDeProveedorNulo" xml:space="preserve">
+    <value>Tipo proveedor asignado a proveedor no puede ser nulo o en estado transitorio.</value>
+  </data>
+</root>
