@@ -79,6 +79,15 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a La Tienda se actualizo satisfactoriamente..
+        /// </summary>
+        internal static string app_informacion_ActualizarTiendaOk {
+            get {
+                return ResourceManager.GetString("app_informacion_ActualizarTiendaOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a La Tienda se registro satisfactoriamente..
         /// </summary>
         internal static string app_informacion_CreacionNuevaTiendaOk {

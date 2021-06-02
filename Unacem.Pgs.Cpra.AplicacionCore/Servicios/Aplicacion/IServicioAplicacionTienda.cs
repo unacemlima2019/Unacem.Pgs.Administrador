@@ -11,5 +11,6 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
    public interface IServicioAplicacionTienda
     {
         Task<ResultadoServicio<TiendaCreadaDto>> AgregarTienda(TiendaDto pCompraDto);
+        Task<ResultadoServicio<TiendaActualizadoDto>> ActualizadoTienda(TiendaDto pTiendaDto);
     }
 }

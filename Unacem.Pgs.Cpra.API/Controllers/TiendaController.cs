@@ -45,5 +45,23 @@ namespace Unacem.Pgs.Admin.API.Controllers
         }
 
 
+
+        [Route("ActualizarTienda")]
+        [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> ActualizarTiendaProgresol([FromBody] TiendaDto pTiendaDto,
+                                                                [FromHeader(Name = "x-requestid")] string TiendaId)
+        {
+            if (pTiendaDto == null)
+                return BadRequest("La Tienda a generar no puede ser nulo. Vuelva a intentarlo por favor.");
+
+            var resultadoTiendaCreada = await _IServicioAplicacionTienda.ActualizadoTienda(pTiendaDto);
+
+            return resultadoTiendaCreada.ResultadoId == EnumTipoResultado.OK ?
+                    (IActionResult)Ok(resultadoTiendaCreada) :
+                    (IActionResult)BadRequest(resultadoTiendaCreada);
+        }
+
     }
 }

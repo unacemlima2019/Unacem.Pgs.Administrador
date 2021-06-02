@@ -33,13 +33,13 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.ConfiguracionesEntidad
             builder.HasOne(d => d.CodRangoDiaAtencionNavigation)
                     .WithMany(p => p.TiendaHorarioAtencion)
                     .HasForeignKey(d => d.CodRangoDiaAtencion)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__PGSTB_TIE__COD_R__710B0E66");
 
             builder.HasOne(d => d.CodTiendaProgresolNavigation)
                     .WithMany(p => p.TiendaHorarioAtencion)
                     .HasForeignKey(d => d.CodTiendaProgresol)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__PGSTB_TIE__COD_T__71FF329F");
           
 

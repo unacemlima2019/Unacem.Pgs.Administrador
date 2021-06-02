@@ -56,7 +56,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
 
 
         private readonly List<TiendaTiempoEntrega> _TiendaTiempoEntrega;
-        public IReadOnlyCollection<TiendaTiempoEntrega> TiendaTiempoEntrega=>_TiendaTiempoEntrega;
+        public IReadOnlyCollection<TiendaTiempoEntrega> TiendaTiempoEntrega => _TiendaTiempoEntrega;
 
 
         private readonly List<TiendaProductoDestacados> _TiendaProductosDestacados;
@@ -67,8 +67,8 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
         public virtual IReadOnlyCollection<TiendaHorarioAtencion> TiendaHorarioAtencion => _TiendaHorarioAtencion;
 
         public TiendaProgresol(string CodLocalSap, string FotoAvatar, byte[] ImagenAvatar, string HorarioAtencion,
-            string Celular, string CelularOpcional, string Negocio,string NombreComercialCorto,
-            DateTime FechaCreacion,string UsuarioCreacion
+            string Celular, string CelularOpcional, string Negocio, string NombreComercialCorto,
+            DateTime FechaCreacion, string UsuarioCreacion
             )
         {
             _CodLocalSap = CodLocalSap;
@@ -93,7 +93,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
             _Activo = EnumActivacion.Activado;
         }
 
-        public TiendaTipoPago AgregarTiendaTipoPago(int pCodTipoPago,int pCodProgresol)
+        public TiendaTipoPago AgregarTiendaTipoPago(int pCodTipoPago, int pCodProgresol)
         {
             var nuevoTipoPago = new TiendaTipoPago(pCodTipoPago, pCodProgresol);
 
@@ -102,7 +102,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
             return nuevoTipoPago;
         }
 
-        public TiendaCondicionDelivery AgregarTiendaCondicionDelivery(int pCodCondicionDelivery, int pCodProgresol,string pMontoMinimo)
+        public TiendaCondicionDelivery AgregarTiendaCondicionDelivery(int pCodCondicionDelivery, int pCodProgresol, string pMontoMinimo)
         {
             var NuevoCondicionDelivery = new TiendaCondicionDelivery(pCodCondicionDelivery, pCodProgresol, pMontoMinimo);
 
@@ -133,6 +133,62 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
             var NuevaTiendaHorarioAtencion = new TiendaHorarioAtencion(codTiendaProgresol, codRangoDiaAtencion, codHoraInicio, codHoraFin);
             _TiendaHorarioAtencion.Add(NuevaTiendaHorarioAtencion);
             return NuevaTiendaHorarioAtencion;
+        }
+
+        public void EstablecerCelular(string pNumeroCelular)
+        {
+            _Celular = pNumeroCelular;
+        }
+        public void EstablecerCodigoSap(string pCodLocalSap)
+        {
+            _CodLocalSap = pCodLocalSap;
+        }
+        public void EstablecerFotoAvatar(string pFotoAvatar)
+        {
+            _FotoAvatar = pFotoAvatar;
+        }
+        public void EstablecerImagenAvatar(byte[] pImagenAvatar)
+        {
+            _ImagenAvatar = pImagenAvatar;
+        }
+        public void EstablecerHorarioAtencion(string pHorarioAtencion)
+        {
+            _HorarioAtencion = pHorarioAtencion;
+        }
+        public void EstablecerCelularOpcional(string pCelularOpcional)
+        {
+            _CelularOpcional = pCelularOpcional;
+        }
+        public void EstablecerNegocio(string pNegocio)
+        {
+            _Negocio = pNegocio;
+        }
+        public void EstablecerNombreComercialCorto(string pNombreComercialCorto)
+        {
+            _NombreComercialCorto = pNombreComercialCorto;
+        }
+
+        public void QuitarTodosTipoPago()
+        {
+            _TiendaTipoPago.RemoveAll(s => s.CodTiendaProgresol == this.CodTiendaProgresol);
+        }
+        public void QuitarTodosCondicionDelivery()
+        {
+            _TiendaCondicionDelivery.RemoveAll(s => s.CodTiendaProgresol == this.CodTiendaProgresol);
+        }
+        public void QuitarTodosTiempoEntrega()
+        {
+            _TiendaTiempoEntrega.RemoveAll(s => s.CodTiendaProgresol == this.CodTiendaProgresol);
+        }
+
+        public void QuitarTodosProductosDestacados()
+        {
+            _TiendaProductosDestacados.RemoveAll(s => s.CodTiendaProgresol == this.CodTiendaProgresol);
+        }
+
+        public void QuitarTodosHorarioAtencion()
+        {
+            _TiendaHorarioAtencion.RemoveAll(s => s.CodTiendaProgresol == this.CodTiendaProgresol);
         }
 
         //public void EstablecerHorarioAtencion(TiendaHorarioAtencion pTiendaHorarioAtencion)

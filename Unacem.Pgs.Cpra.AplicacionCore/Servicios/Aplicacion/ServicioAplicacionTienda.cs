@@ -31,7 +31,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
         //private TipoEntrega _TipoEntrega;
         private TiempoEntrega _TiempoEntrega;
         private TipoPago _TipoPago;
-        //private TiendaProgresol _TiendaProgresol;
+        private TiendaProgresol _TiendaProgresol;
         public ServicioAplicacionTienda(IRepositorioProgresol pIRepositorioProgresol, IRepositorioCondicionDelivery pIRepositorioCondicionDelivery, IRepositorioProductosDestacados pRepositorioProductosDestacados,
             IRepositorioTiempoEntrega pRepositorioTiempoEntrega,
             IRepositorioTipoPago pRepositorioTipoPago,
@@ -65,6 +65,200 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
                              ex.Message, null, null);
             }
         }
+
+        public async Task<ResultadoServicio<TiendaActualizadoDto>> ActualizadoTienda(TiendaDto pTiendaDto)
+        {
+            try
+            {
+                return await RegistrarActualizacionTienda(pTiendaDto);
+            }
+            catch (Exception ex)
+            {
+
+                Comun.RegistrarError(Mensajes.app_error_CreacionNuevaTiendaFallo, ex, "ActualizarTienda");
+
+                return new ResultadoServicio<TiendaActualizadoDto>(EnumTipoResultado.ERROR,
+                             Mensajes.app_error_CreacionNuevaTiendaFallo,
+                             ex.Message, null, null);
+            }
+        }
+
+        private async Task<ResultadoServicio<TiendaActualizadoDto>> RegistrarActualizacionTienda(TiendaDto pTiendaDto)
+        {
+            if(NoEsTiendaDtoValidaParaActualizarlo(pTiendaDto))
+                throw new ArgumentException(Mensajes.app_error_CreacionNuevaTiendaFallo);
+
+            _TiendaProgresol = await _IRepositorioTiendaProgresol.ObtenerAsincronoPorId(pTiendaDto.CodTiendaProgresol);
+            if(_TiendaProgresol == null)
+                throw new ArgumentException(Mensajes.app_error_CreacionNuevaTiendaFallo);
+
+
+
+
+            if (pTiendaDto.CondicionesDelivery != null)
+            {
+                foreach (var item in pTiendaDto.CondicionesDelivery)
+                {
+                    int lCodCondicionDelivery = Convert.ToInt32(item.CodCondicionDelivery);
+                    _TiendacondicionDelivery = await _IRepositorioCondicionDelivery.ObtenerAsincronoPorId(lCodCondicionDelivery);
+
+                    if (_TiendacondicionDelivery == null)
+                        throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaCondicionDelivery);
+                }
+            }
+            else
+            {
+                throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaCondicionDelivery);
+            }
+
+
+            if (pTiendaDto.ProductosDestacados != null)
+            {
+                foreach (var item in pTiendaDto.ProductosDestacados)
+                {
+                    _ProductoDestacados = await _IRepositorioProductosDestacados.ObtenerAsincronoPorId(item.CodProductoDestacado);
+
+                    if (_ProductoDestacados == null)
+                        throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaSinProductosDestacados);
+                }
+
+            }
+            else
+            {
+                throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaSinProductosDestacados);
+            }
+
+
+            if (pTiendaDto.TiempoEntrega != null)
+            {
+                foreach (var item in pTiendaDto.TiempoEntrega)
+                {
+
+                    int lCodTiempoEntrega = Convert.ToInt32(item.CodTiempoEntrega);
+
+                    _TiempoEntrega = await _IRepositorioTiempoEntrega.ObtenerAsincronoPorId(lCodTiempoEntrega);
+
+                    //poner Mensaje
+                    if (_TiempoEntrega == null)
+                        throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaSinTiempoEntrega);
+                }
+
+            }
+            else
+            {
+                //Mensaje No tiene condicion delivery
+                throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaSinTiempoEntrega);
+            }
+
+
+            if (pTiendaDto.TipoPago != null)
+            {
+                foreach (var item in pTiendaDto.TipoPago)
+                {
+                    int lCodTipoPago = Convert.ToInt32(item.CodTipoPago);
+
+                    _TipoPago = await _IRepositorioTipoPago.ObtenerAsincronoPorId(lCodTipoPago);
+
+                    //poner Mensaje
+                    if (_TipoPago == null)
+                        throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaSinTipoDePago);
+                }
+            }
+            else
+            {
+                //Mensaje No tiene condicion delivery
+                throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaSinTipoDePago);
+            }
+
+
+            if (pTiendaDto.TiendaHorarioAtencion != null)
+            {
+                foreach (var item in pTiendaDto.TiendaHorarioAtencion)
+                {
+                    int lCodRangoDiaAtencion = Convert.ToInt32(item.CodRangoDiaAtencion);
+
+                    var _RangoDiaAtencion = await _IRepositorioRangoDiaAtencion.ObtenerAsincronoPorId(lCodRangoDiaAtencion);
+
+
+                    //poner Mensaje
+                    if (_RangoDiaAtencion == null)
+                        throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaSinRangoDiaAtencion);
+                }
+            }
+            else
+            {
+                //Mensaje No tiene condicion delivery
+                throw new ProgresolExcepcionDominio(Mensajes.app_validacion_TiendaSinRangoDiaAtencion);
+            }
+
+
+            MaterializarPedidoDesdeDto(pTiendaDto);
+
+           await ActualizarTiendaProgresol(_TiendaProgresol);
+
+            TiendaActualizadoDto TiendaActualizado = new TiendaActualizadoDto()
+            {
+                Id =pTiendaDto.CodTiendaProgresol
+            };
+
+
+            return new ResultadoServicio<TiendaActualizadoDto>(EnumTipoResultado.OK, Mensajes.app_informacion_ActualizarTiendaOk,
+                    string.Empty, TiendaActualizado, null);
+
+        }
+
+        private void  MaterializarPedidoDesdeDto(TiendaDto pTiendaDto)
+        {
+            _TiendaProgresol.EstablecerCelular(pTiendaDto.DscCelular);
+            _TiendaProgresol.EstablecerCodigoSap(pTiendaDto.DscCodLocalSap);
+            _TiendaProgresol.EstablecerFotoAvatar(pTiendaDto.DscFotoAvatar);
+            _TiendaProgresol.EstablecerImagenAvatar(pTiendaDto.DscImagenAvatar);
+            _TiendaProgresol.EstablecerHorarioAtencion(pTiendaDto.DscHorarioAtencion);
+            _TiendaProgresol.EstablecerCelularOpcional(pTiendaDto.DscCelularOpcional);
+            _TiendaProgresol.EstablecerNegocio(pTiendaDto.DscNegocio);
+            _TiendaProgresol.EstablecerNombreComercialCorto(pTiendaDto.DscNombreComercialCorto);
+
+            _TiendaProgresol.QuitarTodosTipoPago();
+
+            foreach (var item in pTiendaDto.TipoPago)
+            {
+                var NuevoTiendaTipoPago = _TiendaProgresol.AgregarTiendaTipoPago(item.CodTipoPago, _TiendaProgresol.CodTiendaProgresol);
+            }
+
+            _TiendaProgresol.QuitarTodosCondicionDelivery();
+            foreach (var item in pTiendaDto.CondicionesDelivery)
+            {
+                var NuevaTiendaCondicionDelivery = _TiendaProgresol.AgregarTiendaCondicionDelivery(item.CodCondicionDelivery, _TiendaProgresol.CodTiendaProgresol, item.DscMontoMinimo);
+            }
+
+            _TiendaProgresol.QuitarTodosTiempoEntrega();
+            foreach (var item in pTiendaDto.TiempoEntrega)
+            {
+                var NuevaTiempoEntrega = _TiendaProgresol.AgregarTiendaTiempoEntrega(_TiendaProgresol.CodTiendaProgresol, item.CodTiempoEntrega);
+            }
+
+            _TiendaProgresol.QuitarTodosProductosDestacados();
+
+            foreach (var item in pTiendaDto.ProductosDestacados)
+            {
+                var NuevoProductosDestacados = _TiendaProgresol.AgregarProductosDestacados(_TiendaProgresol.CodTiendaProgresol, item.CodProductoDestacado);
+            }
+
+            _TiendaProgresol.QuitarTodosHorarioAtencion();
+            foreach (var item in pTiendaDto.TiendaHorarioAtencion)
+            {
+                var NuevoTiendaHorarioAtencion = _TiendaProgresol.AgregarHorarioAtencion(_TiendaProgresol.CodTiendaProgresol, item.CodRangoDiaAtencion, item.CodHoraInicio, item.CodHoraFin);
+            }
+
+            //throw new NotImplementedException();
+        }
+
+        private bool NoEsTiendaDtoValidaParaActualizarlo(TiendaDto pTiendaDto)
+        {
+            return pTiendaDto.CodTiendaProgresol == 0;
+        }
+
+
 
         #region Metodos Privados
         private  async Task<ResultadoServicio<TiendaCreadaDto>> RegistrarTienda(TiendaDto pTiendaDto)
@@ -219,6 +413,15 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
 
             return await _IRepositorioTiendaProgresol.UnidadDeTrabajo.GrabarAsincronicamenteEntidad();
 
+        }
+        private async Task<bool> ActualizarTiendaProgresol(TiendaProgresol pTienda)
+        {
+            if (pTienda == null)
+                throw new ArgumentNullException(Mensajes.app_excepcion_TiendaNuloParaRegistrarla);
+
+            _IRepositorioTiendaProgresol.Actualizar(pTienda);
+
+            return await _IRepositorioTiendaProgresol.UnidadDeTrabajo.GrabarAsincronicamenteEntidad();
         }
         private  TiendaProgresol CrearNuevaTienda(TiendaDto pTiendaDto)
         {

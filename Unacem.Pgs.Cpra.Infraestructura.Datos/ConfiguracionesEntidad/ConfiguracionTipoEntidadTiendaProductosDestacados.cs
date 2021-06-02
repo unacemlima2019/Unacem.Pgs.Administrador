@@ -26,13 +26,13 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.ConfiguracionesEntidad
             builder.HasOne(d => d.CodProductoDestacadoNavigation)
                     .WithMany(p => p.TiendaProductosDestacado)
                     .HasForeignKey(d => d.CodProductoDestacado)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_PGSTB_TIENDA_PRODUCTO_DESTACADO_PGSTB_TIENDA_PRODUCTO_DESTACADO");
 
             builder.HasOne(d => d.CodTiendaProgresolNavigation)
                     .WithMany(p => p.TiendaProductosDestacados)
                     .HasForeignKey(d => d.CodTiendaProgresol)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_PGSTB_TIENDA_PRODUCTO_DESTACADO_PGSTB_TIENDA_PROGRESOL");
             
         }

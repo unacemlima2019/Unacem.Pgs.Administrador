@@ -123,6 +123,9 @@
   <data name="app_excepcion_TiendaNuloParaRegistrarla" xml:space="preserve">
     <value>Falta información para la creación de la tienda</value>
   </data>
+  <data name="app_informacion_ActualizarTiendaOk" xml:space="preserve">
+    <value>La Tienda se actualizo satisfactoriamente.</value>
+  </data>
   <data name="app_informacion_CreacionNuevaTiendaOk" xml:space="preserve">
     <value>La Tienda se registro satisfactoriamente.</value>
   </data>
