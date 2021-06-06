@@ -6,6 +6,7 @@ using Autofac;
 using Microsoft.Extensions.Configuration;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
 using Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion;
+using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas;
 using Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda;
 using Unacem.Pgs.Cpra.Infraestructura.Base;
 
@@ -23,8 +24,14 @@ namespace Unacem.Pgs.Cpra.API.Infraestructura.IoC
     public class ModuloAplicacion : Autofac.Module
     {
         private ConfiguracionAplicacion _configuracionAplicacion;
+
+        public string CadenaConexionConsultas { get; }
+
         public ModuloAplicacion(IConfiguration pIConfiguration)
         {
+
+            this.CadenaConexionConsultas = pIConfiguration["ConnectionString"];
+
             _configuracionAplicacion = new ConfiguracionAplicacion
             {
                 CadenaConexion = pIConfiguration["ConnectionString"],
@@ -53,7 +60,10 @@ namespace Unacem.Pgs.Cpra.API.Infraestructura.IoC
 
 
             //Repositorios
-  
+            builder.Register(c => new ConsultarProgresol(CadenaConexionConsultas))
+              .As<IConsultarProgresol>()
+              .InstancePerLifetimeScope();
+
             builder.RegisterType<RepositorioProgresol>()
                 .As<IRepositorioProgresol>()
                 .InstancePerLifetimeScope();

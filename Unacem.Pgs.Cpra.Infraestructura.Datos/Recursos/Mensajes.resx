@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="error_App_ConsultaProgresolConResultados" xml:space="preserve">
+    <value>Se recupero información de Progresoles</value>
+  </data>
+  <data name="error_App_ConsultaProgresolSinResultados" xml:space="preserve">
+    <value>Lo sentimos la consulta Progresol no devolvio resultado.</value>
+  </data>
   <data name="infraDatos_error_ConsultaComprasConErrores" xml:space="preserve">
     <value>Lo sentimos en estos momentos no se pudo realizar la consulta de compras. Vuelva a intentarlo mas tarde.</value>
   </data>

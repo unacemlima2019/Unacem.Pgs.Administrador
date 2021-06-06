@@ -61,6 +61,24 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Se recupero información de Progresoles.
+        /// </summary>
+        internal static string error_App_ConsultaProgresolConResultados {
+            get {
+                return ResourceManager.GetString("error_App_ConsultaProgresolConResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos la consulta Progresol no devolvio resultado..
+        /// </summary>
+        internal static string error_App_ConsultaProgresolSinResultados {
+            get {
+                return ResourceManager.GetString("error_App_ConsultaProgresolSinResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Lo sentimos en estos momentos no se pudo realizar la consulta de compras. Vuelva a intentarlo mas tarde..
         /// </summary>
         internal static string infraDatos_error_ConsultaComprasConErrores {

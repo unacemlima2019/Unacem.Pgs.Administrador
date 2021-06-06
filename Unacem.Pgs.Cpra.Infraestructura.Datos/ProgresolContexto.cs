@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Unacem.Pgs.Admin.AplicacionCore.Agregados.Progresol;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
 using Unacem.Pgs.Admin.Infraestructura.Datos.ConfiguracionesEntidad;
 using Unacem.Pgs.AplicacionCore.DominioBase;
@@ -38,6 +39,8 @@ namespace Unacem.Pgs.Cpra.Infraestructura.Datos
 
         public DbSet<RangoDiaAtencion> RangoDiaAtencion { get; set; }
 
+        public DbSet<TempFunClientesPGSap> TempFunClientesPGSap { get; set; }
+
         public ProgresolContexto(DbContextOptions<ProgresolContexto> opciones) : base(opciones) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -66,6 +69,7 @@ namespace Unacem.Pgs.Cpra.Infraestructura.Datos
             modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadTiendaHorarioAtencion());
 
             modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadRangoDiaAtencion());
+            modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadTempFunClientesPGSap());
         }
 
         public async Task<bool> GrabarAsincronicamenteEntidad(CancellationToken tokenDeCancelacion = default(CancellationToken))
