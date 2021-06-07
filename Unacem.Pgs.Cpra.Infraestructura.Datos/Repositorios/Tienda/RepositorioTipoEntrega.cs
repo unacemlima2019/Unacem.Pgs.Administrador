@@ -35,5 +35,12 @@ public class RepositorioTipoEntrega: IRepositorioTipoEntrega
             return TipoEntregaBuscado;
         }
 
+        public async Task<TipoEntrega> ObtenerAsincronoPorDefecto()
+        {
+            var TipoEntregaBuscado = await _contexto.TipoEntrega.FirstOrDefaultAsync(w => w.Defecto == "S");
+            return TipoEntregaBuscado;
+        }
+
+
     }
 }

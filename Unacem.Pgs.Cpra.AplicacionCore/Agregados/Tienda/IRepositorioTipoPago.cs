@@ -9,5 +9,6 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
     public interface IRepositorioTipoPago:IRepositorio<TipoPago>
     {
         Task<TipoPago> ObtenerAsincronoPorId(int pCodTipoPago);
+        Task<List<TipoPago>> ObtenerAsincronoPorDefecto();
     }
 }

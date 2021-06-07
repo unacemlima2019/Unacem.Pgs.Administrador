@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
@@ -32,6 +33,12 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
             //if (TipoPagoBuscado != null)
             //    await _contexto.Entry(TipoPagoBuscado).Reference(c => c.TiendaTipoPago).LoadAsync();
 
+            return TipoPagoBuscado;
+        }
+
+        public async Task<List<TipoPago>> ObtenerAsincronoPorDefecto()
+        {
+            var TipoPagoBuscado = await _contexto.TipoPago.Where(w => w.Defecto == "S").ToListAsync();
             return TipoPagoBuscado;
         }
 

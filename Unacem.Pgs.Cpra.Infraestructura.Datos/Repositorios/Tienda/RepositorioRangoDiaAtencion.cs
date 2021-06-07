@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
@@ -27,6 +28,12 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
         public async Task<RangoDiaAtencion> ObtenerAsincronoPorId(int pCodRangoDiaAtencion)
         {
             var RangoDiaAtencionBuscado = await _contexto.RangoDiaAtencion.FirstOrDefaultAsync(e => e.CodRangoDiaAtencion == pCodRangoDiaAtencion);
+            return RangoDiaAtencionBuscado;
+        }
+
+        public async Task<List<RangoDiaAtencion>> ObtenerAsincronoPorDefecto()
+        {
+            var RangoDiaAtencionBuscado = await _contexto.RangoDiaAtencion.Where(e => e.Defecto == "S").ToListAsync();
             return RangoDiaAtencionBuscado;
         }
     }

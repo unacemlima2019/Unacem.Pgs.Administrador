@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
@@ -32,6 +33,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
         private TiempoEntrega _TiempoEntrega;
         private TipoPago _TipoPago;
         private TiendaProgresol _TiendaProgresol;
+        private RangoDiaAtencion _RangoDiaAtencion;
         public ServicioAplicacionTienda(IRepositorioProgresol pIRepositorioProgresol, IRepositorioCondicionDelivery pIRepositorioCondicionDelivery, IRepositorioProductosDestacados pRepositorioProductosDestacados,
             IRepositorioTiempoEntrega pRepositorioTiempoEntrega,
             IRepositorioTipoPago pRepositorioTipoPago,
@@ -64,6 +66,111 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
                              Mensajes.app_error_CreacionNuevaTiendaFallo,
                              ex.Message, null, null);
             }
+        }
+        public async Task<ResultadoServicio<TiendaDto>> ConsultarTienda()
+        {
+            try
+            {
+                return await RecuperarTiendaPorDefecto();
+            }
+            catch (Exception ex)
+            {
+                Comun.RegistrarError(Mensajes.app_error_CreacionNuevaTiendaFallo, ex, "AgregarCompra");
+
+                return new ResultadoServicio<TiendaDto>(EnumTipoResultado.ERROR,
+                             Mensajes.app_error_CreacionNuevaTiendaFallo,
+                             ex.Message, null, null);
+            }
+        }
+
+        private async Task<ResultadoServicio<TiendaDto>> RecuperarTiendaPorDefecto()
+        {
+            TiendaDto oTienda = new TiendaDto();
+            List<CondicionesDeliveryDto> oCondicionDelivery = new List<CondicionesDeliveryDto>();
+            List<ProductoDestacadoDto> oProductosDestacados = new List<ProductoDestacadoDto>();
+            List<TiempoEntregaDto> oTiempoEntrega = new List<TiempoEntregaDto>();
+            List<TipoPagoDto> oTipoPago = new List<TipoPagoDto>();
+            List<TiendaHorarioAtencionDto> oHorarioAtencion = new List<TiendaHorarioAtencionDto>();
+
+            var ListTiendacondicionDelivery = await _IRepositorioCondicionDelivery.ObtenerAsincronoPorDefecto();
+            if (ListTiendacondicionDelivery != null)
+            {
+                oCondicionDelivery = ListTiendacondicionDelivery.Select(e => new CondicionesDeliveryDto() {
+                    CodCondicionDelivery = e.CodCondicionDelivery,
+                    DscCondicionDelivery = e.DscCondicionDelivery,
+                    DscActivo = e.DscActivo
+                }).ToList();
+
+                oTienda.CondicionesDelivery = new List<CondicionesDeliveryDto>();
+                oTienda.CondicionesDelivery = oCondicionDelivery;
+            }
+
+            var ListProductosDestacados = await _IRepositorioProductosDestacados.ObtenerAsincronoPorDefecto();
+            if (ListProductosDestacados != null)
+            {
+                oProductosDestacados = ListProductosDestacados.Select(e => new ProductoDestacadoDto()
+                {
+                    DscActivo = e.DscActivo,
+                    DscCategoria = e.DscCategoria,
+                    FchActualizacion = e.FchActualizacion,
+                    CodProductoDestacado = e.CodProductoDestacado,
+                    DscNombre = e.DscNombre,
+                    DscRuta = e.DscRuta,
+                    FchCreacion = e.FchCreacion
+                }).ToList();
+
+                oTienda.ProductosDestacados = new List<ProductoDestacadoDto>();
+                oTienda.ProductosDestacados = oProductosDestacados;
+            }
+
+            var ListTiempoEntrega= await _IRepositorioTiempoEntrega.ObtenerAsincronoPorDefecto();
+            if(ListTiempoEntrega!=null)
+            {
+                oTiempoEntrega = ListTiempoEntrega.Select(e => new TiempoEntregaDto()
+                {
+                    DscActivo=e.DscActivo,
+                    CodTiempoEntrega=e.CodTiempoEntrega,
+                    DscTiempoEntrega=e.DscTiempoEntrega
+                }).ToList();
+
+
+                oTienda.TiempoEntrega = new List<TiempoEntregaDto>();
+                oTienda.TiempoEntrega = oTiempoEntrega;
+            }
+
+            var ListTipoPago = await _IRepositorioTipoPago.ObtenerAsincronoPorDefecto();
+            if(ListTipoPago!=null)
+            {
+                oTipoPago = ListTipoPago.Select(e => new TipoPagoDto() 
+                {
+                    DscActivo=e.DscActivo,
+                    CodTipoPago=e.CodTipoPago,
+                    DscRutaLogo=e.DscRutaLogo,
+                    DscTipoPago=e.DscTipoPago
+                }).ToList();
+
+                oTienda.TipoPago = new List<TipoPagoDto>();
+                oTienda.TipoPago = oTipoPago;
+            }
+            var ListRangoDiaAtencion = await _IRepositorioRangoDiaAtencion.ObtenerAsincronoPorDefecto();
+            if(ListRangoDiaAtencion!=null)
+            {
+                oHorarioAtencion = ListRangoDiaAtencion.Select(e => new TiendaHorarioAtencionDto() 
+                { 
+                    CodRangoDiaAtencion=e.CodRangoDiaAtencion,
+                   CodHoraInicio=9,
+                   CodHoraFin=7,
+                }).ToList();
+
+
+                oTienda.TiendaHorarioAtencion = new List<TiendaHorarioAtencionDto>();
+                oTienda.TiendaHorarioAtencion = oHorarioAtencion;
+            }
+            
+
+            return new ResultadoServicio<TiendaDto>(EnumTipoResultado.OK, Mensajes.app_informacion_DatosTiendaOk,
+                    string.Empty, oTienda, null);
+
         }
 
         public async Task<ResultadoServicio<TiendaActualizadoDto>> ActualizadoTienda(TiendaDto pTiendaDto)

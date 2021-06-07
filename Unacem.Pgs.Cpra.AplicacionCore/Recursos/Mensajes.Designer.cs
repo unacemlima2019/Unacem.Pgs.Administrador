@@ -97,6 +97,24 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Se recupero la información de Tienda satisfactoriamente..
+        /// </summary>
+        internal static string app_informacion_DatosTiendaOk {
+            get {
+                return ResourceManager.GetString("app_informacion_DatosTiendaOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se devolvio datos satisfactoriamente..
+        /// </summary>
+        internal static string app_informacion_RecuperarTiendaOk {
+            get {
+                return ResourceManager.GetString("app_informacion_RecuperarTiendaOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Progresol asociado a la compra no puede ser uno invalido o nulo..
         /// </summary>
         internal static string app_validacion_ProgresolInvalidoParaGenerarCompra {

@@ -9,5 +9,6 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
     public interface IRepositorioRangoDiaAtencion : IRepositorio<RangoDiaAtencion>
     {
         Task<RangoDiaAtencion> ObtenerAsincronoPorId(int pCodRangoDiaAtencion);
+        Task<List<RangoDiaAtencion>> ObtenerAsincronoPorDefecto();
     }
 }

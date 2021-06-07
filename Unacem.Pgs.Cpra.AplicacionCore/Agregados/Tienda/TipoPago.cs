@@ -16,7 +16,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
         public string DscTipoPago { get; set; }
         public string DscRutaLogo { get; set; }
         public string DscActivo { get; set; }
-
+        public string Defecto { get; set; }
         public virtual ICollection<TiendaTipoPago> TiendaTipoPago { get; set; }
     }
 }

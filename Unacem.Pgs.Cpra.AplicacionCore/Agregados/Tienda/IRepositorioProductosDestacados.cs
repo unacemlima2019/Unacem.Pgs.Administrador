@@ -9,5 +9,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
     public interface IRepositorioProductosDestacados: IRepositorio<ProductoDestacados>
     {
         Task<ProductoDestacados> ObtenerAsincronoPorId(int pProductosDestacados);
+
+        Task<List<ProductoDestacados>> ObtenerAsincronoPorDefecto();
     }
 }

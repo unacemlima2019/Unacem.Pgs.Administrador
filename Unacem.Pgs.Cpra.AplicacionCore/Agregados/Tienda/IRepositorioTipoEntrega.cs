@@ -9,5 +9,6 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
     public interface IRepositorioTipoEntrega:IRepositorio<TipoEntrega>
     {
         Task<TipoEntrega> ObtenerAsincronoPorId(int pTipoEntrega);
+        Task<TipoEntrega> ObtenerAsincronoPorDefecto();
     }
 }

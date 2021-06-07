@@ -19,7 +19,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
         public DateTime? FchActualizacion { get; set; }
         public string DscActivo { get; set; }
         public string DscCategoria { get; set; }
-
+        public string Defecto { get; set; }
         public virtual ICollection<TiendaProductoDestacados> TiendaProductosDestacado { get; set; }
     }
 }

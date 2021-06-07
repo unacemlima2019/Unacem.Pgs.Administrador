@@ -10,5 +10,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
     public interface IRepositorioCondicionDelivery: IRepositorio<CondicionesDelivery>
     {
         Task<CondicionesDelivery> ObtenerAsincronoPorId(int pCondicionDeliveryId);
+
+        Task<List<CondicionesDelivery>> ObtenerAsincronoPorDefecto();
     }
 }

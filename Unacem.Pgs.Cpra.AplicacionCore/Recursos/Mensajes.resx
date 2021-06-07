@@ -129,6 +129,12 @@
   <data name="app_informacion_CreacionNuevaTiendaOk" xml:space="preserve">
     <value>La Tienda se registro satisfactoriamente.</value>
   </data>
+  <data name="app_informacion_DatosTiendaOk" xml:space="preserve">
+    <value>Se recupero la información de Tienda satisfactoriamente.</value>
+  </data>
+  <data name="app_informacion_RecuperarTiendaOk" xml:space="preserve">
+    <value>Se devolvio datos satisfactoriamente.</value>
+  </data>
   <data name="app_validacion_ProgresolInvalidoParaGenerarCompra" xml:space="preserve">
     <value>Progresol asociado a la compra no puede ser uno invalido o nulo.</value>
   </data>

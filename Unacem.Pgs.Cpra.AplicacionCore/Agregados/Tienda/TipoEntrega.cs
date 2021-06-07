@@ -15,7 +15,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
         public int CodTipoEntrega { get; set; }
         public string DscTipo { get; set; }
         public string DscRutaLogo { get; set; }
-
+        public string Defecto { get; set; }
         public virtual ICollection<TiendaTipoEntrega> TiendaTipoEntrega { get; set; }
     }
 }

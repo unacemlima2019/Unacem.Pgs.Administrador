@@ -16,7 +16,7 @@ namespace Unacem.Pgs.Cpra.AplicacionCore.Dto.Tienda
         public int CodCondicionDelivery { get; set; }
         public string DscCondicionDelivery { get; set; }
         public string DscActivo { get; set; }
-
+        public string Defecto { get; set; }
         public virtual ICollection<TiendaCondicionDelivery> TiendaCondicionDelivery { get; set; }
     }
 }

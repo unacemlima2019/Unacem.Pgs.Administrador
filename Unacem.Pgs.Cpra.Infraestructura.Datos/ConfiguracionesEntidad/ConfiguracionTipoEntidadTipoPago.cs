@@ -36,6 +36,12 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.ConfiguracionesEntidad
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
+            builder.Property(e => e.Defecto)
+                .HasColumnName("DSC_DEFECTO")
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength();
+
         }
      }
 }

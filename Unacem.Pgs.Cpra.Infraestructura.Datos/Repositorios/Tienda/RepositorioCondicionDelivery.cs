@@ -7,6 +7,7 @@ using Unacem.Pgs.Cpra.AplicacionCore.Dto.Tienda;
 using Unacem.Pgs.Cpra.Infraestructura.Datos;
 using Microsoft.EntityFrameworkCore;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
+using System.Linq;
 
 namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
 {
@@ -38,6 +39,14 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
             //if (CondicionDeliveryBuscado != null)
             //    await _contexto.Entry(CondicionDeliveryBuscado).Reference(c => c.TiendaCondicionDelivery).LoadAsync();
 
+            return CondicionDeliveryBuscado;
+        }
+
+        public async Task<List<CondicionesDelivery>> ObtenerAsincronoPorDefecto()
+        {
+            var CondicionDeliveryBuscado = await _contexto.CondicionDelivery
+                                        .Where(w => w.Defecto=="S")
+                                        .ToListAsync();
             return CondicionDeliveryBuscado;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
@@ -34,6 +35,10 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
 
             return ProductosDestacadosBuscado;
         }
-
+        public async Task<List<ProductoDestacados>> ObtenerAsincronoPorDefecto()
+        {
+            var ProductosDestacadosBuscado = await _contexto.ProductoDestacados.Where(w => w.Defecto=="S").ToListAsync();
+            return ProductosDestacadosBuscado;
+        }
     }
 }

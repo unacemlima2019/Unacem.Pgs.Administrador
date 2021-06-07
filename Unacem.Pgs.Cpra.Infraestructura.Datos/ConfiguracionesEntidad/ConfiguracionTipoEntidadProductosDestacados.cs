@@ -52,7 +52,13 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.ConfiguracionesEntidad
                 builder.Property(e => e.FchCreacion)
                     .HasColumnName("FCH_CREACION")
                     .HasColumnType("datetime");
-     
+
+            builder.Property(e => e.Defecto)
+                    .HasColumnName("DSC_DEFECTO")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
         }
     }
 }

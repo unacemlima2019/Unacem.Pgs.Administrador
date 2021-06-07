@@ -12,7 +12,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
         public virtual ICollection<TiendaHorarioAtencion> TiendaHorarioAtencion { get; set; }
 
         public string DscRangoDia { get; set; }
-
+        public string Defecto { get; set; }
         public RangoDiaAtencion()
         {
             TiendaHorarioAtencion = new HashSet<TiendaHorarioAtencion>();

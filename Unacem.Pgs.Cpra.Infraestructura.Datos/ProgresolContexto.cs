@@ -39,7 +39,7 @@ namespace Unacem.Pgs.Cpra.Infraestructura.Datos
 
         public DbSet<RangoDiaAtencion> RangoDiaAtencion { get; set; }
 
-        public DbSet<TempFunClientesPGSap> TempFunClientesPGSap { get; set; }
+        //public DbSet<TempFunClientesPGSap> TempFunClientesPGSap { get; set; }
 
         public ProgresolContexto(DbContextOptions<ProgresolContexto> opciones) : base(opciones) { }
 
@@ -69,7 +69,7 @@ namespace Unacem.Pgs.Cpra.Infraestructura.Datos
             modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadTiendaHorarioAtencion());
 
             modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadRangoDiaAtencion());
-            modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadTempFunClientesPGSap());
+            //modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadTempFunClientesPGSap());
         }
 
         public async Task<bool> GrabarAsincronicamenteEntidad(CancellationToken tokenDeCancelacion = default(CancellationToken))

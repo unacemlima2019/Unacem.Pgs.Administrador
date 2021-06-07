@@ -15,7 +15,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda
         public int CodTiempoEntrega { get; set; }
         public string DscTiempoEntrega { get; set; }
         public string DscActivo { get; set; }
-
+        public string Defecto { get; set; }
         public virtual ICollection<TiendaTiempoEntrega> TiendaTiempoEntrega { get; set; }
     }
 }

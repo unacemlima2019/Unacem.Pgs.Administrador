@@ -29,7 +29,13 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.ConfiguracionesEntidad
                     .HasColumnName("DSC_CONDICION_DELIVERY")
                     .HasMaxLength(100)
                     .IsUnicode(false);
-           
+
+            builder.Property(e => e.Defecto)
+                    .HasColumnName("DSC_DEFECTO")
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
         }
     }
 }
