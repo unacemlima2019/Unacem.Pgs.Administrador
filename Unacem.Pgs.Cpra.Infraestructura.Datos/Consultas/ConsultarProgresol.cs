@@ -44,27 +44,35 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas
             using (var conexion = new SqlConnection(_cadenaConexion))
             {
                 var resultado = await conexion.QueryAsync<ModeloVistaProgresol>(
-                                        @"SELECT 
-                                             DSC_RUC_CLIENTE AS RucCliente,
-	                                         COD_PDV AS CodPdv,
-	                                         'activo' AS Estado,
-	                                        case 
-	                                         when DSC_NOMBRE_COMERCIAL is null or trim(DSC_NOMBRE_COMERCIAL)='' then
-	                                           DSC_RAZON_SOCIAL
-	                                        else
-	                                            DSC_NOMBRE_COMERCIAL
-	                                        end as NombreComercial,
-	                                         DSC_DIRECCION AS Direccion,
-	                                         COD_ZONA AS CodZona,
-	                                         DSC_ZONA AS Zona,
-	                                         COD_TERRITORIO AS CodTerritorio,
-                                             DSC_TERRITORIO AS Territorio,
-	                                         COD_SUB_TERRITORIO AS CodSubTerritorio,
-                                             DSC_SUB_TERRITORIO AS SubTerritorio,
-	                                         'Admin' AS Usuario,
-	                                         'Alta' AS Accion,
-	                                         'Activo' AS EnPgsCom
-                                          FROM [PGS].[dbo].[PGSTB_TEMP_FUN_CLIENTESPS_SAP]");
+                                        @"SELECT
+                                         SA.DSC_RUC_CLIENTE AS RucCliente,
+	                                     SA.COD_PDV AS CodPdv,
+	                                    case 
+	                                    when SA.DSC_NOMBRE_COMERCIAL is null or trim(SA.DSC_NOMBRE_COMERCIAL)='' then
+	                                    SA.DSC_RAZON_SOCIAL
+	                                    else
+	                                    SA.DSC_NOMBRE_COMERCIAL
+	                                    end as NombreComercial,
+	                                     SA.DSC_DIRECCION AS Direccion,
+	                                     SA.COD_ZONA AS CodZona,
+	                                     SA.DSC_ZONA AS Zona,
+	                                     SA.COD_TERRITORIO AS CodTerritorio,
+                                         SA.DSC_TERRITORIO AS Territorio,
+	                                     SA.COD_SUB_TERRITORIO AS CodSubTerritorio,
+                                         SA.DSC_SUB_TERRITORIO AS SubTerritorio,
+	                                     US.COD_USUARIO AS Usuario,
+	                                     case  
+	                                     when (select count(*) from [dbo].[PGSTB_TIENDA_PROGRESOL] PG
+			                                     where PG.DSC_COD_LOCAL_SAP=SA.COD_PDV) > 0 then
+
+                                        'En Linea'
+	                                    else
+	                                    'Pendiente'
+	                                    end as Accion
+                                      FROM [PGS].[dbo].[PGSTB_TEMP_FUN_CLIENTESPS_SAP] SA
+                                        LEFT join [dbo].[SEGTB_USUARIO] US
+                                        on sa.DSC_RUC_CLIENTE=US.NUM_DOCUMENTO
+                                      order by COD_PADRE");
 
                 return new ModeloVista<ModeloVistaProgresol>(
                     new ResultadoConsulta
