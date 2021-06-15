@@ -7,16 +7,6 @@ namespace Unacem.Pgs.Cpra.AplicacionCore.Dto.Tienda
 {
     public class TiendaDto
     {
-        //public TiendaDto()
-        //{
-        //    Opinion = new HashSet<OpinionDto>();
-        //    TiendaCondicionDelivery = new HashSet<TiendaCondicionDeliveryDto>();
-        //    TiendaProductoDestacado = new HashSet<ProductoDestacadoDto>();
-        //    TiendaTiempoEntrega = new HashSet<TiendaTiempoEntregaDto>();
-        //    TiendaTipoEntrega = new HashSet<TiendaTipoEntregaDto>();
-        //    TiendaTipoPago = new HashSet<TiendaTipoPagoDto>();
-        //}
-
         public int CodTiendaProgresol { get; set; }
         public string DscCodLocalSap { get; set; }
         public string DscFotoAvatar { get; set; }
@@ -39,11 +29,5 @@ namespace Unacem.Pgs.Cpra.AplicacionCore.Dto.Tienda
         public OpinionDto Opinion { get; set; }
         public List<TiendaHorarioAtencionDto> TiendaHorarioAtencion { get; set; }
 
-        //public virtual ICollection<OpinionDto> Opinion { get; set; }
-        //public virtual ICollection<TiendaCondicionDeliveryDto> TiendaCondicionDelivery { get; set; }
-        //public virtual ICollection<ProductoDestacadoDto> TiendaProductoDestacado { get; set; }
-        //public virtual ICollection<TiendaTiempoEntregaDto> TiendaTiempoEntrega { get; set; }
-        //public virtual ICollection<TiendaTipoEntregaDto> TiendaTipoEntrega { get; set; }
-        //public virtual ICollection<TiendaTipoPagoDto> TiendaTipoPago { get; set; }
     }
 }
