@@ -33,7 +33,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
         private TiempoEntrega _TiempoEntrega;
         private TipoPago _TipoPago;
         private TiendaProgresol _TiendaProgresol;
-        private RangoDiaAtencion _RangoDiaAtencion;
+
         public ServicioAplicacionTienda(IRepositorioProgresol pIRepositorioProgresol, IRepositorioCondicionDelivery pIRepositorioCondicionDelivery, IRepositorioProductosDestacados pRepositorioProductosDestacados,
             IRepositorioTiempoEntrega pRepositorioTiempoEntrega,
             IRepositorioTipoPago pRepositorioTipoPago,
@@ -51,6 +51,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
             _IRepositorioTiendaProgresol = pTiendaProgresol ?? throw new ArgumentNullException(nameof(pTiendaProgresol));
 
             _IRepositorioRangoDiaAtencion = pRangoDiaAtencion ?? throw new ArgumentNullException(nameof(pRangoDiaAtencion));
+
         }
         public async Task<ResultadoServicio<TiendaCreadaDto>> AgregarTienda(TiendaDto pTiendaDto)
         {
@@ -64,6 +65,21 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
 
                 return new ResultadoServicio<TiendaCreadaDto>(EnumTipoResultado.ERROR,
                              Mensajes.app_error_CreacionNuevaTiendaFallo,
+                             ex.Message, null, null);
+            }
+        }
+        public async Task<ResultadoServicio<TiendaDto>> ConsultarTiendaPorCodigo(int CodTiendaProgresol)
+        {
+            try
+            {
+                return await ConsultarTiendaPorID(CodTiendaProgresol);
+            }
+            catch (Exception ex)
+            {
+                Comun.RegistrarError(Mensajes.app_error_RecuperarLaInformacion, ex, "Consultar Tienda");
+
+                return new ResultadoServicio<TiendaDto>(EnumTipoResultado.ERROR,
+                             Mensajes.app_error_RecuperarLaInformacion,
                              ex.Message, null, null);
             }
         }
@@ -160,6 +176,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
                     CodRangoDiaAtencion=e.CodRangoDiaAtencion,
                    CodHoraInicio=9,
                    CodHoraFin=7,
+                   RangoDiaAtencionDescripcion=e.DscRangoDia
                 }).ToList();
 
 
@@ -189,14 +206,164 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
                              ex.Message, null, null);
             }
         }
+        private async Task<TiendaProgresol> RecuperarInformacionDeTiendaPorID(int CodTiendaProgresol)
+        {
+            return _TiendaProgresol = await _IRepositorioTiendaProgresol.ObtenerAsincronoPorId(CodTiendaProgresol);
+        }
+        private async Task<ResultadoServicio<TiendaDto>> ConsultarTiendaPorID(int CodTiendaProgresol)
+        {
+            TiendaDto oTienda = new TiendaDto();
+            List<CondicionesDeliveryDto> oCondicionDelivery = new List<CondicionesDeliveryDto>();
+            List<ProductoDestacadoDto> oProductosDestacados = new List<ProductoDestacadoDto>();
+            List<TiempoEntregaDto> oTiempoEntrega = new List<TiempoEntregaDto>();
+            List<TipoPagoDto> oTipoPago = new List<TipoPagoDto>();
+            List<TiendaHorarioAtencionDto> oHorarioAtencion = new List<TiendaHorarioAtencionDto>();
 
+
+            _TiendaProgresol = await RecuperarInformacionDeTiendaPorID(CodTiendaProgresol);
+            if (_TiendaProgresol == null)
+                throw new ArgumentException(Mensajes.app_error_RecuperarLaInformacion);
+
+            oTienda.CodTiendaProgresol = _TiendaProgresol.CodTiendaProgresol;
+            oTienda.DscCodLocalSap = _TiendaProgresol.CodLocalSap;
+            oTienda.DscFotoAvatar = _TiendaProgresol.FotoAvatar;
+            oTienda.DscImagenAvatar = _TiendaProgresol.ImagenAvatar;
+            oTienda.DscHorarioAtencion = _TiendaProgresol.HorarioAtencion;
+            oTienda.DscCelular = _TiendaProgresol.Celular;
+            oTienda.DscCelularOpcional = _TiendaProgresol.CelularOpcional;
+            oTienda.DscNegocio = _TiendaProgresol.Negocio;
+            oTienda.DscActivo = _TiendaProgresol.Activo;
+            oTienda.DscUsuarioCreacion = _TiendaProgresol.UsuarioCreacion;
+            oTienda.DscFechaCreacion = _TiendaProgresol.FechaCreacion;
+            oTienda.DscUsuarioModificacion = _TiendaProgresol.UsuarioModificacion;
+            oTienda.DscFechaModificacion = _TiendaProgresol.FechaModificacion;
+            oTienda.DscNombreComercialCorto = _TiendaProgresol.NombreComercialCorto;
+            oTienda.DscNombreComercialCorto = _TiendaProgresol.NombreComercialCorto;
+            //oTienda.TipoPago = _TiendaProgresol.NombreComercialCorto;
+
+            if (_TiendaProgresol.TiendaCondicionDelivery != null)
+            {
+                foreach (var item in _TiendaProgresol.TiendaCondicionDelivery)
+                {
+                    var BusquedaTiendacondicionDelivery = await _IRepositorioCondicionDelivery.ObtenerAsincronoPorId(item.CodCondicionDelivery);
+
+                    if (BusquedaTiendacondicionDelivery != null)
+                    {
+                        CondicionesDeliveryDto CondicionDeliveryDto = new CondicionesDeliveryDto() 
+                        {
+                            CodCondicionDelivery = BusquedaTiendacondicionDelivery.CodCondicionDelivery,
+                            DscCondicionDelivery = BusquedaTiendacondicionDelivery.DscCondicionDelivery,
+                            DscActivo = BusquedaTiendacondicionDelivery.DscActivo
+                        };
+                        oCondicionDelivery.Add(CondicionDeliveryDto);
+                    }
+                }
+                oTienda.CondicionesDelivery = new List<CondicionesDeliveryDto>();
+                oTienda.CondicionesDelivery = oCondicionDelivery;
+            }
+
+            if (_TiendaProgresol.TiendaProductosDestacados != null)
+            {
+                foreach (var item in _TiendaProgresol.TiendaProductosDestacados)
+                {
+                    var BusquedaProductosDestacados = await _IRepositorioProductosDestacados.ObtenerAsincronoPorId(item.CodProductoDestacado);
+
+                    if(BusquedaProductosDestacados != null)
+                    {
+                        ProductoDestacadoDto ProductoDestacadoDto = new ProductoDestacadoDto()
+                        {
+                            DscActivo = BusquedaProductosDestacados.DscActivo,
+                            DscCategoria = BusquedaProductosDestacados.DscCategoria,
+                            FchActualizacion = BusquedaProductosDestacados.FchActualizacion,
+                            CodProductoDestacado = BusquedaProductosDestacados.CodProductoDestacado,
+                            DscNombre = BusquedaProductosDestacados.DscNombre,
+                            DscRuta = BusquedaProductosDestacados.DscRuta,
+                            FchCreacion = BusquedaProductosDestacados.FchCreacion
+                        };
+                        oProductosDestacados.Add(ProductoDestacadoDto);
+                    }
+                }
+                oTienda.ProductosDestacados = new List<ProductoDestacadoDto>();
+                oTienda.ProductosDestacados = oProductosDestacados;
+            }
+
+            
+            if (_TiendaProgresol.TiendaTiempoEntrega != null)
+            {
+                foreach (var item in _TiendaProgresol.TiendaTiempoEntrega)
+                {
+                    var BuscarTiempoEntrega = await _IRepositorioTiempoEntrega.ObtenerAsincronoPorId(item.CodTiempoEntrega);
+
+                    if(BuscarTiempoEntrega!=null)
+                    {
+                        TiempoEntregaDto TiempoEntregaDto = new TiempoEntregaDto()
+                        {
+                            DscActivo = BuscarTiempoEntrega.DscActivo,
+                            CodTiempoEntrega = BuscarTiempoEntrega.CodTiempoEntrega,
+                            DscTiempoEntrega = BuscarTiempoEntrega.DscTiempoEntrega
+                        };
+                        oTiempoEntrega.Add(TiempoEntregaDto);
+                    }
+                }
+                oTienda.TiempoEntrega = new List<TiempoEntregaDto>();
+                oTienda.TiempoEntrega = oTiempoEntrega;
+            }
+
+            if (_TiendaProgresol.TiendaTipoPago != null)
+            {
+                foreach (var item in _TiendaProgresol.TiendaTipoPago)
+                {
+                    var BuscarTipoPago = await _IRepositorioTipoPago.ObtenerAsincronoPorId(item.CodTipoPago);
+                    if(BuscarTipoPago!=null)
+                    {
+                        TipoPagoDto TipoPagoDto = new TipoPagoDto()
+                        {
+                            DscActivo = BuscarTipoPago.DscActivo,
+                            CodTipoPago = BuscarTipoPago.CodTipoPago,
+                            DscRutaLogo = BuscarTipoPago.DscRutaLogo,
+                            DscTipoPago = BuscarTipoPago.DscTipoPago
+                        };
+                        oTipoPago.Add(TipoPagoDto);
+                    }
+                }
+                oTienda.TipoPago = new List<TipoPagoDto>();
+                oTienda.TipoPago = oTipoPago;
+            }
+
+            if (_TiendaProgresol.TiendaHorarioAtencion != null)
+            {
+                foreach (var item in _TiendaProgresol.TiendaHorarioAtencion)
+                {
+                    var BuscarRangoDiaAtencion = await _IRepositorioRangoDiaAtencion.ObtenerAsincronoPorId(item.CodRangoDiaAtencion);
+                    TiendaHorarioAtencionDto TiendaHorarioAtencionDto = new TiendaHorarioAtencionDto() 
+                    {
+                        CodRangoDiaAtencion = BuscarRangoDiaAtencion.CodRangoDiaAtencion,
+                        CodHoraInicio = item.CodHoraInicio,
+                        CodHoraFin = item.CodHoraFin,
+                        RangoDiaAtencionDescripcion = BuscarRangoDiaAtencion.DscRangoDia,
+                        CodTiendaHorarioAtencion=item.CodTiendaHorarioAtencion,
+                        CodTiendaProgresol=item.CodTiendaProgresol
+                    };
+                    oHorarioAtencion.Add(TiendaHorarioAtencionDto);
+                }
+                oTienda.TiendaHorarioAtencion = new List<TiendaHorarioAtencionDto>();
+                oTienda.TiendaHorarioAtencion = oHorarioAtencion;
+            }
+
+            if (_TiendaProgresol==null)
+                throw new ArgumentException(Mensajes.app_error_RecuperarLaInformacion);
+
+            return new ResultadoServicio<TiendaDto>(EnumTipoResultado.OK, Mensajes.app_informacion_DatosTiendaOk,
+                    string.Empty, oTienda, null);
+
+        }
         private async Task<ResultadoServicio<TiendaActualizadoDto>> RegistrarActualizacionTienda(TiendaDto pTiendaDto)
         {
             if(NoEsTiendaDtoValidaParaActualizarlo(pTiendaDto))
                 throw new ArgumentException(Mensajes.app_error_CreacionNuevaTiendaFallo);
 
-            _TiendaProgresol = await _IRepositorioTiendaProgresol.ObtenerAsincronoPorId(pTiendaDto.CodTiendaProgresol);
-            if(_TiendaProgresol == null)
+            _TiendaProgresol =await RecuperarInformacionDeTiendaPorID(pTiendaDto.CodTiendaProgresol);//await _IRepositorioTiendaProgresol.ObtenerAsincronoPorId(pTiendaDto.CodTiendaProgresol);
+            if (_TiendaProgresol == null)
                 throw new ArgumentException(Mensajes.app_error_CreacionNuevaTiendaFallo);
 
 

@@ -13,5 +13,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion
         Task<ResultadoServicio<TiendaCreadaDto>> AgregarTienda(TiendaDto pCompraDto);
         Task<ResultadoServicio<TiendaActualizadoDto>> ActualizadoTienda(TiendaDto pTiendaDto);
         Task<ResultadoServicio<TiendaDto>> ConsultarTienda();
+        Task<ResultadoServicio<TiendaDto>> ConsultarTiendaPorCodigo(int CodTiendaProgresol);
+
     }
 }

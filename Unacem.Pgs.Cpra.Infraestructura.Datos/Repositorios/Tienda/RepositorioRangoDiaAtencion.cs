@@ -28,6 +28,14 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
         public async Task<RangoDiaAtencion> ObtenerAsincronoPorId(int pCodRangoDiaAtencion)
         {
             var RangoDiaAtencionBuscado = await _contexto.RangoDiaAtencion.FirstOrDefaultAsync(e => e.CodRangoDiaAtencion == pCodRangoDiaAtencion);
+            //if(RangoDiaAtencionBuscado!=null)
+            //{
+            //    await _contexto.Entry(RangoDiaAtencionBuscado)
+            //      .Collection(w => w.TiendaHorarioAtencion)
+            //      .Query()
+            //      .LoadAsync();
+            //}
+
             return RangoDiaAtencionBuscado;
         }
 

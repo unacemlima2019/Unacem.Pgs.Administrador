@@ -70,6 +70,15 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos en estos momento no fue posible traer la información Vuelva a intentarlo mas tarde por favor..
+        /// </summary>
+        internal static string app_error_RecuperarLaInformacion {
+            get {
+                return ResourceManager.GetString("app_error_RecuperarLaInformacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Falta información para la creación de la tienda.
         /// </summary>
         internal static string app_excepcion_TiendaNuloParaRegistrarla {

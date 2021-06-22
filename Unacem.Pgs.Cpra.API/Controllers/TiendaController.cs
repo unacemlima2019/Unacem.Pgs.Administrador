@@ -74,5 +74,16 @@ namespace Unacem.Pgs.Admin.API.Controllers
             return TiendaValorDefecto.ResultadoId == EnumTipoResultado.OK ? (IActionResult)Ok(TiendaValorDefecto) : (IActionResult)NotFound(TiendaValorDefecto);
         }
 
+        [Route("RecuperarTiendaPorCodigo")]
+        [HttpGet]
+        [ProducesResponseType(typeof(ResultadoServicio<TiendaDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> ConsultaTiendaProgresolPorCodigo(int pCodigoTienda)
+        {
+            var TiendaDatos = await _IServicioAplicacionTienda.ConsultarTiendaPorCodigo(pCodigoTienda);
+
+
+            return TiendaDatos.ResultadoId == EnumTipoResultado.OK ? (IActionResult)Ok(TiendaDatos) : (IActionResult)NotFound(TiendaDatos);
+        }
     }
 }

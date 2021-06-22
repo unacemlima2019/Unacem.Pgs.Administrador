@@ -11,5 +11,6 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Dto.Tienda
         public int CodRangoDiaAtencion { get; set; }
         public int CodHoraInicio { get; set; }
         public int CodHoraFin { get; set; }
+        public string RangoDiaAtencionDescripcion { get; set; }
     }
 }
