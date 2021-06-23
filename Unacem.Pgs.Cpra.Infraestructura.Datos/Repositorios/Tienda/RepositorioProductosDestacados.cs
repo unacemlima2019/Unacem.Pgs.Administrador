@@ -37,7 +37,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
         }
         public async Task<List<ProductoDestacados>> ObtenerAsincronoPorDefecto()
         {
-            var ProductosDestacadosBuscado = await _contexto.ProductoDestacados.Where(w => w.Defecto=="S").ToListAsync();
+            var ProductosDestacadosBuscado = await _contexto.ProductoDestacados.Where(w => w.Defecto=="S" && w.DscActivo=="S").ToListAsync();
             return ProductosDestacadosBuscado;
         }
     }
