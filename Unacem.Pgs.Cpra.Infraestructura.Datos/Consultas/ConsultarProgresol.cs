@@ -80,14 +80,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas
                                             on sa.DSC_RUC_CLIENTE=US.NUM_DOCUMENTO
                                             group by SA.DSC_RUC_CLIENTE,
                                                SA.COD_PDV,
-                                              case
-                                              when  NOT PG.dsc_nombre_comercial_corto is null or trim(PG.dsc_nombre_comercial_corto)<>'' then
-                                                  PG.dsc_nombre_comercial_corto
-                                              when SA.DSC_NOMBRE_COMERCIAL is null or trim(SA.DSC_NOMBRE_COMERCIAL)='' then
-                                                  SA.DSC_RAZON_SOCIAL
-                                              else
-                                                  SA.DSC_NOMBRE_COMERCIAL
-                                              end,
+                                              SA.DSC_NOMBRE_COMERCIAL,
                                               SA.DSC_DIRECCION,
                                               SA.COD_ZONA,
                                               SA.DSC_ZONA,
