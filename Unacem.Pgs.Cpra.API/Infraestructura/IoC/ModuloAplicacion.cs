@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
 using Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion;
 using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas;
+using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros;
 using Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda;
 using Unacem.Pgs.Cpra.Infraestructura.Base;
 
@@ -57,13 +58,15 @@ namespace Unacem.Pgs.Cpra.API.Infraestructura.IoC
 
         protected override void Load(ContainerBuilder builder)
         {
-
-
-            //Repositorios
             builder.Register(c => new ConsultarProgresol(CadenaConexionConsultas))
               .As<IConsultarProgresol>()
               .InstancePerLifetimeScope();
 
+            builder.Register(c => new ConsultaParametros(CadenaConexionConsultas))
+              .As<IConsultaParametros>()
+              .InstancePerLifetimeScope();
+
+            //Repositorios
             builder.RegisterType<RepositorioProgresol>()
                 .As<IRepositorioProgresol>()
                 .InstancePerLifetimeScope();
@@ -79,30 +82,30 @@ namespace Unacem.Pgs.Cpra.API.Infraestructura.IoC
               .InstancePerLifetimeScope();
 
 
-             builder.RegisterType<RepositorioProductosDestacados>()
-              .As<IRepositorioProductosDestacados>()
-              .InstancePerLifetimeScope();
+            builder.RegisterType<RepositorioProductosDestacados>()
+             .As<IRepositorioProductosDestacados>()
+             .InstancePerLifetimeScope();
 
-             builder.RegisterType<RepositorioTipoEntrega>()
-              .As<IRepositorioTipoEntrega>()
-              .InstancePerLifetimeScope();
+            builder.RegisterType<RepositorioTipoEntrega>()
+             .As<IRepositorioTipoEntrega>()
+             .InstancePerLifetimeScope();
 
-              builder.RegisterType<RepositorioTiempoEntrega>()
-              .As<IRepositorioTiempoEntrega>()
-              .InstancePerLifetimeScope();
+            builder.RegisterType<RepositorioTiempoEntrega>()
+            .As<IRepositorioTiempoEntrega>()
+            .InstancePerLifetimeScope();
 
-               builder.RegisterType<RepositorioTipoPago>()
-              .As<IRepositorioTipoPago>()
-              .InstancePerLifetimeScope();
+            builder.RegisterType<RepositorioTipoPago>()
+           .As<IRepositorioTipoPago>()
+           .InstancePerLifetimeScope();
 
             builder.RegisterType<RepositorioTiendaProgresol>()
             .As<IRepositorioTiendaProgresol>()
             .InstancePerLifetimeScope();
 
             builder.RegisterType<RepositorioRangoDiaAtencion>()
-        .As<IRepositorioRangoDiaAtencion>()
-        .InstancePerLifetimeScope();
-            
+            .As<IRepositorioRangoDiaAtencion>()
+            .InstancePerLifetimeScope();
+
 
             //Servicios App
 
