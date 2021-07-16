@@ -79,6 +79,15 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos en estos momentos no se pudo realizar la consulta de tipos de cotizacion. Vuelva a intentarlo mas tarde..
+        /// </summary>
+        internal static string error_infraestructura_consultaTiposCotizacionConErrores {
+            get {
+                return ResourceManager.GetString("error_infraestructura_consultaTiposCotizacionConErrores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Lo sentimos en estos momentos no se pudo realizar la consulta de tipos usuario de cotización. Vuelva a intentarlo mas tarde..
         /// </summary>
         internal static string error_infraestructura_consultaTiposUsuarioCotizacionConErrores {
@@ -88,11 +97,29 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Se recupero información de tipos de cotización..
+        /// </summary>
+        internal static string informacion_infraestructura_consultarTiposCotizacionConResultados {
+            get {
+                return ResourceManager.GetString("informacion_infraestructura_consultarTiposCotizacionConResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Se recupero información de tipos usuario de cotización..
         /// </summary>
         internal static string informacion_infraestructura_consultarTiposUsuarioCotizacionConResultados {
             get {
                 return ResourceManager.GetString("informacion_infraestructura_consultarTiposUsuarioCotizacionConResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La consulta no devolvió algún resultado. Cambie los parámetros y vuelva a consultar..
+        /// </summary>
+        internal static string informacion_infraestructura_consultaTiposCotizacionSinResultados {
+            get {
+                return ResourceManager.GetString("informacion_infraestructura_consultaTiposCotizacionSinResultados", resourceCulture);
             }
         }
         

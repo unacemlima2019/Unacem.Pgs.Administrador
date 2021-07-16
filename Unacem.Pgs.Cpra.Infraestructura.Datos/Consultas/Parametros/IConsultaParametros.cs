@@ -8,6 +8,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
 {
     public interface IConsultaParametros
     {
-        Task<ModeloVista<TipoUsuarioCotizacionListadoModeloVista>> ConsultarTiposUsuarioCotizacion();
+        Task<ModeloVista<TipoUsuarioCotizacionListadoModeloVista>> ConsultarListadoTiposUsuarioCotizacion();
+        Task<ModeloVista<TipoCotizacionListadoModeloVista>> ConsultarListadoTiposCotizacion();
     }
 }

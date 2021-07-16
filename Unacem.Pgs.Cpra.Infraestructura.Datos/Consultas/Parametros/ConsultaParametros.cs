@@ -21,15 +21,16 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
                     pCadenaConexion : throw new ArgumentNullException(nameof(pCadenaConexion));
         }
 
-        public async Task<ModeloVista<TipoUsuarioCotizacionListadoModeloVista>> ConsultarTiposUsuarioCotizacion()
+
+        public async Task<ModeloVista<TipoUsuarioCotizacionListadoModeloVista>> ConsultarListadoTiposUsuarioCotizacion()
         {
             try
             {
-                return await ConsultarTiposUsuario();
+                return await ConsultarTiposUsuarioCotizacion();
             }
             catch (Exception ex)
             {
-                RegistrarError(Mensajes.error_infraestructura_consultaTiposUsuarioCotizacionConErrores, ex, "ConsultarTiposUsuarioCotizacion");
+                RegistrarError(Mensajes.error_infraestructura_consultaTiposUsuarioCotizacionConErrores, ex, "ConsultarListadoTiposUsuarioCotizacion");
 
                 return new ModeloVista<TipoUsuarioCotizacionListadoModeloVista>(
                     new ResultadoConsulta
@@ -40,7 +41,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
             }
         }
 
-        private async Task<ModeloVista<TipoUsuarioCotizacionListadoModeloVista>> ConsultarTiposUsuario()
+        private async Task<ModeloVista<TipoUsuarioCotizacionListadoModeloVista>> ConsultarTiposUsuarioCotizacion()
         {
             using (var conexion = new SqlConnection(_cadenaConexion))
             {
@@ -58,6 +59,49 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
                         CodigoResultado = cantidadFilas == 0 ? EnumResultadoConsulta.SINRESULTADO : EnumResultadoConsulta.OK,
                         DescripcionResultado = cantidadFilas == 0 ? Mensajes.informacion_infraestructura_consultaTiposUsuarioCotizacionSinResultados :
                                                                                 Mensajes.informacion_infraestructura_consultarTiposUsuarioCotizacionConResultados,
+                        TotalRegistros = cantidadFilas
+                    }, null, resultado);
+            }
+        }
+
+        public async Task<ModeloVista<TipoCotizacionListadoModeloVista>> ConsultarListadoTiposCotizacion()
+        {
+            try
+            {
+                return await ConsultarTiposCotizacion();
+            }
+            catch (Exception ex)
+            {
+                RegistrarError(Mensajes.error_infraestructura_consultaTiposCotizacionConErrores, ex, "ConsultarListadoTiposCotizacion");
+
+                return new ModeloVista<TipoCotizacionListadoModeloVista>(
+                    new ResultadoConsulta
+                    {
+                        CodigoResultado = EnumResultadoConsulta.ERROR,
+                        DescripcionResultado = Mensajes.error_infraestructura_consultaTiposCotizacionConErrores
+                    }, null, null);
+            }
+        }
+
+        private async Task<ModeloVista<TipoCotizacionListadoModeloVista>> ConsultarTiposCotizacion()
+        {
+            using (var conexion = new SqlConnection(_cadenaConexion))
+            {
+                var resultado = await conexion.QueryAsync<TipoCotizacionListadoModeloVista>(
+                                        @"SELECT	 COD_TIPO_COTIZACION        AS id
+                                                    ,DSC_TIPO_COTIZACION        AS descripcionTipoCotizacion
+                                                    ,DSC_ABREV_TIPO_COTIZACION  AS abreviaturaTipoCotizacion
+                                            FROM	dbo.PGSTB_TIPO_COTIZACION (NOLOCK)
+                                            WHERE	FLAG_ACTIVO  != @DSC_ACTIVO",
+                    new { DSC_ACTIVO = EnumActividadEstado.Inactivo });
+
+                var cantidadFilas = resultado != null ? resultado.AsList().Count : 0;
+                return new ModeloVista<TipoCotizacionListadoModeloVista>(
+                    new ResultadoConsulta
+                    {
+                        CodigoResultado = cantidadFilas == 0 ? EnumResultadoConsulta.SINRESULTADO : EnumResultadoConsulta.OK,
+                        DescripcionResultado = cantidadFilas == 0 ? Mensajes.informacion_infraestructura_consultaTiposCotizacionSinResultados :
+                                                                                Mensajes.informacion_infraestructura_consultarTiposCotizacionConResultados,
                         TotalRegistros = cantidadFilas
                     }, null, resultado);
             }

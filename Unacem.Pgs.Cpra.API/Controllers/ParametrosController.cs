@@ -24,17 +24,31 @@ namespace Unacem.Pgs.Admin.API.Controllers
         }
 
 
-        [Route("consultarTiposUsuarioCotizacion")]
+        [Route("consultarListadoTiposUsuarioCotizacion")]
         [HttpGet]
         [ProducesResponseType(typeof(ModeloVista<TipoUsuarioCotizacionListadoModeloVista>), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> ConsultarTiposUsuarioCotizacion()
+        public async Task<IActionResult> ConsultarListadoTiposUsuarioCotizacion()
         {
-            var tiposUsuarioCotizacion = await _IConsultaParametros.ConsultarTiposUsuarioCotizacion();
+            var tiposUsuarioCotizacion = await _IConsultaParametros.ConsultarListadoTiposUsuarioCotizacion();
 
             return tiposUsuarioCotizacion.ResultadoConsulta.CodigoResultado == EnumTipoResultado.OK ?
                     (IActionResult)Ok(tiposUsuarioCotizacion) :
                     (IActionResult)NotFound(tiposUsuarioCotizacion);
+        }
+
+
+        [Route("consultarListadoTiposCotizacion")]
+        [HttpGet]
+        [ProducesResponseType(typeof(ModeloVista<TipoCotizacionListadoModeloVista>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> ConsultarListadoTiposCotizacion()
+        {
+            var tiposCotizacion = await _IConsultaParametros.ConsultarListadoTiposCotizacion();
+
+            return tiposCotizacion.ResultadoConsulta.CodigoResultado == EnumTipoResultado.OK ?
+                    (IActionResult)Ok(tiposCotizacion) :
+                    (IActionResult)NotFound(tiposCotizacion);
         }
     }
 }
