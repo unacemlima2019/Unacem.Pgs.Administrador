@@ -50,5 +50,19 @@ namespace Unacem.Pgs.Admin.API.Controllers
                     (IActionResult)Ok(tiposCotizacion) :
                     (IActionResult)NotFound(tiposCotizacion);
         }
+
+
+        [Route("consultarListadoZonificacionesProgresol")]
+        [HttpGet]
+        [ProducesResponseType(typeof(ModeloVista<ZonificacionProgresolModeloVista>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> ConsultarListadoZonificacionesProgresol()
+        {
+            var zonificacnes = await _IConsultaParametros.ConsultarListadoZonificacionesProgresol();
+
+            return zonificacnes.ResultadoConsulta.CodigoResultado == EnumTipoResultado.OK ?
+                    (IActionResult)Ok(zonificacnes) :
+                    (IActionResult)NotFound(zonificacnes);
+        }
     }
 }
