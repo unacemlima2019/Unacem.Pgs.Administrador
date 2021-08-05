@@ -45,8 +45,8 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas
             {
                 var resultado = await conexion.QueryAsync<ModeloVistaProgresol>(
                                             @"SELECT
-                                                      SA.DSC_RUC_CLIENTE AS RucCliente,
-                                                      SA.COD_PDV AS CodPdv,
+                                                  SA.DSC_RUC_CLIENTE AS RucCliente,
+                                                  SA.COD_PDV AS CodPdv,
                                                   SA.DSC_NOMBRE_COMERCIAL as NombreComercial,
                                                   PG.DSC_CELULAR AS Celular,
                                                   SA.DSC_DIRECCION AS Direccion,
@@ -60,6 +60,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas
                                                   SA.DSC_SUB_TERRITORIO AS SubTerritorio,
                                                   US.COD_USUARIO AS Usuario,
                                                   SA.DSC_FLAG_TIENDA AS FlagTienda,
+												  SA.DSC_TIPO_PROGRESOL AS TipoProgresol,
                                                   case  
                                                        when SA.DSC_FLAG_TIENDA <> 'X' then 'No Tienda'      
                                                        when pg.COD_TIENDA_PROGRESOL is null AND SA.DSC_FLAG_TIENDA = 'X' then 'Pendiente'          
@@ -87,7 +88,8 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas
                                                   PG.DSC_CELULAR,
                                                   SA.DSC_FLAG_TIENDA,
                                                   SA.DSC_LONGITUD,
-                                                  SA.DSC_LATITUD
+                                                  SA.DSC_LATITUD,
+												  SA.DSC_TIPO_PROGRESOL
                                                  order by codpdv
                                             ");
 

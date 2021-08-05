@@ -25,7 +25,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas
         //public string Provincia { get; set; }
         //public string Distrito { get; set; }
         //public string Departamento { get; set; }
-        //public string TipoProgresol { get; set; }
+        public string TipoProgresol { get; set; }
         //public string RazonSocial { get; set; }
         public string RucCliente { get; set; }
         public string CodZona { get; set; }
