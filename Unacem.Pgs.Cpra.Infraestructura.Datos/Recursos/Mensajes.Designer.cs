@@ -97,6 +97,24 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos en estos momentos no se pudo realizar la consulta de ubigeos progresol. Vuelva a intentarlo mas tarde..
+        /// </summary>
+        internal static string error_infraestructura_consultaUbigeosProgresolConErrores {
+            get {
+                return ResourceManager.GetString("error_infraestructura_consultaUbigeosProgresolConErrores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos en estos momentos no se pudo realizar la consulta de zonificaciones progresol. Vuelva a intentarlo mas tarde..
+        /// </summary>
+        internal static string error_infraestructura_consultaZonificacionesConErrores {
+            get {
+                return ResourceManager.GetString("error_infraestructura_consultaZonificacionesConErrores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Se recupero información de tipos de cotización..
         /// </summary>
         internal static string informacion_infraestructura_consultarTiposCotizacionConResultados {
@@ -115,6 +133,24 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Se recupero información de ubigeos progresol..
+        /// </summary>
+        internal static string informacion_infraestructura_consultarUbigeosProgresolConResultados {
+            get {
+                return ResourceManager.GetString("informacion_infraestructura_consultarUbigeosProgresolConResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se recupero información de zonificaciones progresol..
+        /// </summary>
+        internal static string informacion_infraestructura_consultarZonificacionesConResultados {
+            get {
+                return ResourceManager.GetString("informacion_infraestructura_consultarZonificacionesConResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a La consulta no devolvió algún resultado. Cambie los parámetros y vuelva a consultar..
         /// </summary>
         internal static string informacion_infraestructura_consultaTiposCotizacionSinResultados {
@@ -129,6 +165,24 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Recursos {
         internal static string informacion_infraestructura_consultaTiposUsuarioCotizacionSinResultados {
             get {
                 return ResourceManager.GetString("informacion_infraestructura_consultaTiposUsuarioCotizacionSinResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos, la consulta de ubigeos progresol no devolvio resultado alguno. Vuelva a intentarlo mas tarde..
+        /// </summary>
+        internal static string informacion_infraestructura_consultaUbigeosProgresolSinResultados {
+            get {
+                return ResourceManager.GetString("informacion_infraestructura_consultaUbigeosProgresolSinResultados", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos, la consulta de zonificaciones progresol no devolvio resultado alguno. Vuelva a intentarlo mas tarde..
+        /// </summary>
+        internal static string informacion_infraestructura_consultaZonificacionesSinResultados {
+            get {
+                return ResourceManager.GetString("informacion_infraestructura_consultaZonificacionesSinResultados", resourceCulture);
             }
         }
         
