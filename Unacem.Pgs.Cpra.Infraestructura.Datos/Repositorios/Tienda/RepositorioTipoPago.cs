@@ -38,7 +38,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
 
         public async Task<List<TipoPago>> ObtenerAsincronoPorDefecto()
         {
-            var TipoPagoBuscado = await _contexto.TipoPago.Where(w => w.Defecto == "S").ToListAsync();
+            var TipoPagoBuscado = await _contexto.TipoPago.Where(w => w.Defecto == "S" && w.DscActivo == "S").ToListAsync();
             return TipoPagoBuscado;
         }
 

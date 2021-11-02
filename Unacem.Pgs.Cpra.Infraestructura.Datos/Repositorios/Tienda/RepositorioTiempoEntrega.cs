@@ -39,7 +39,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda
 
         public async Task<List<TiempoEntrega>> ObtenerAsincronoPorDefecto()
         {
-            var TiempoEntregaBuscado = await _contexto.TiempoEntrega.Where(w => w.Defecto=="S").ToListAsync();
+            var TiempoEntregaBuscado = await _contexto.TiempoEntrega.Where(w => w.Defecto=="S" && w.DscActivo=="S").ToListAsync();
             return TiempoEntregaBuscado;
         }
     }

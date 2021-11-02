@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Unacem.Pgs.Cpra.Infraestructura.Datos.Base
+namespace Unacem.Pgs.Admin.Infraestructura.Datos.Base
 {
     public struct EnumEstadoDocumento
     {
