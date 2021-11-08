@@ -189,20 +189,25 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
 		                                        ,UBGPGS.provincia
 		                                        ,UBGPGS.codigoDistrito
 		                                        ,UBGPGS.distrito
-                                        FROM	(	SELECT	'SNC'					AS codigoUbigeo
-					                                        ,'CDEP'					AS codigoDepartamento 
+                                        FROM	(	SELECT	TRIM(COD_DEPARTAMENTO) + 
+					                                        TRIM(COD_PROVINCIA) + 
+					                                        TRIM(COD_DISTRITO)		AS codigoUbigeo
+					                                        ,COD_DEPARTAMENTO		AS codigoDepartamento 
 					                                        ,DSC_DEPARTAMENTO		AS departamento 
-					                                        ,'CPROV'				AS codigoProvincia
+					                                        ,COD_PROVINCIA			AS codigoProvincia
 					                                        ,DSC_PROVINCIA			AS provincia
-					                                        ,'CDIST'				AS codigoDistrito
+					                                        ,COD_DISTRITO			AS codigoDistrito
 					                                        ,DSC_DISTRITO			AS distrito
 			                                        FROM	PGSTB_TEMP_FUN_CLIENTESPS_SAP (NOLOCK)
-			                                        WHERE	DSC_FLAG_TIENDA		= @DSC_FLAG_TIENDA
-			                                        GROUP BY DSC_DEPARTAMENTO
+			                                        WHERE	DSC_FLAG_TIENDA				= @DSC_FLAG_TIENDA
+			                                        GROUP BY COD_DEPARTAMENTO
+					                                        ,DSC_DEPARTAMENTO
+					                                        ,COD_PROVINCIA
 					                                        ,DSC_PROVINCIA
-					                                        ,DSC_DISTRITO) UBGPGS
-                                        WHERE	LEN(UBGPGS.provincia)		!= ''  
-		                                        AND LEN(UBGPGS.distrito)	!= ''",
+					                                        ,COD_DISTRITO
+					                                        ,DSC_DISTRITO ) UBGPGS
+                                        WHERE	LEN(UBGPGS.codigoProvincia)		!= ''  
+		                                        AND LEN(UBGPGS.codigoDistrito)	!= ''",
                     new { DSC_FLAG_TIENDA = EnumActivacionLocalProgesol.Activado});
 
                 var cantidadFilas = resultado != null ? resultado.AsList().Count : 0;
