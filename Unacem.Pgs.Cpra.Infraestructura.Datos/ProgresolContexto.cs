@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Progresol;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
+using Unacem.Pgs.Admin.AplicacionCore.Agregados.Videos;
 using Unacem.Pgs.Admin.Infraestructura.Datos.ConfiguracionesEntidad;
 using Unacem.Pgs.AplicacionCore.DominioBase;
 using Unacem.Pgs.Cpra.AplicacionCore.Dto.Tienda;
@@ -38,6 +39,8 @@ namespace Unacem.Pgs.Cpra.Infraestructura.Datos
         public DbSet<TiendaHorarioAtencion> TiendaHorarioAtencion { get; set; }
 
         public DbSet<RangoDiaAtencion> RangoDiaAtencion { get; set; }
+        public DbSet<Video> Video { get; set; }
+        public DbSet<TipoVideo> TipoVideo { get; set; }
 
         //public DbSet<TempFunClientesPGSap> TempFunClientesPGSap { get; set; }
 
@@ -70,6 +73,9 @@ namespace Unacem.Pgs.Cpra.Infraestructura.Datos
 
             modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadRangoDiaAtencion());
             //modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadTempFunClientesPGSap());
+
+            modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadVideo());
+            modelBuilder.ApplyConfiguration(new ConfiguracionTipoEntidadTipoVideo());
         }
 
         public async Task<bool> GrabarAsincronicamenteEntidad(CancellationToken tokenDeCancelacion = default(CancellationToken))

@@ -61,6 +61,15 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos en estos momento no fue posible traer la información Vuelva a intentarlo mas tarde por favor..
+        /// </summary>
+        internal static string app_error_Consultar_VideoFallo {
+            get {
+                return ResourceManager.GetString("app_error_Consultar_VideoFallo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Lo sentimos en estos momentos no es posible registrar la tienda Vuelva a intentarlo mas tarde por favor..
         /// </summary>
         internal static string app_error_CreacionNuevaTiendaFallo {
@@ -120,6 +129,15 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
         internal static string app_informacion_RecuperarTiendaOk {
             get {
                 return ResourceManager.GetString("app_informacion_RecuperarTiendaOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se devolvio datos satisfactoriamente..
+        /// </summary>
+        internal static string app_informacion_RecuperarVideosOk {
+            get {
+                return ResourceManager.GetString("app_informacion_RecuperarVideosOk", resourceCulture);
             }
         }
         

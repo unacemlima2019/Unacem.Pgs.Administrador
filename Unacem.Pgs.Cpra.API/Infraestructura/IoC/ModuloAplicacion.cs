@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Autofac;
 using Microsoft.Extensions.Configuration;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
+using Unacem.Pgs.Admin.AplicacionCore.Agregados.Videos;
 using Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion;
 using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas;
 using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros;
 using Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda;
+using Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Videos;
 using Unacem.Pgs.Cpra.Infraestructura.Base;
 
 using Unacem.Pgs.Cpra.Infraestructura.Datos.Repositorios.Log;
@@ -107,13 +109,31 @@ namespace Unacem.Pgs.Cpra.API.Infraestructura.IoC
             .InstancePerLifetimeScope();
 
 
+            builder.RegisterType<RepositorioRangoDiaAtencion>()
+            .As<IRepositorioRangoDiaAtencion>()
+            .InstancePerLifetimeScope();
+
+
+
+
+            builder.RegisterType<RepositorioVideo>()
+            .As<IRepositorioVideo>()
+            .InstancePerLifetimeScope();
+
+            builder.RegisterType<RepositorioTipoVideo>()
+            .As<IRepositorioTipoVideo>()
+            .InstancePerLifetimeScope();
+            
+
             //Servicios App
 
             builder.RegisterType<ServicioAplicacionTienda>()
                 .As<IServicioAplicacionTienda>()
                 .InstancePerLifetimeScope();
 
-
+            builder.RegisterType<ServicioAplicacionVideo>()
+               .As<IServicioAplicacionVideo>()
+               .InstancePerLifetimeScope();
 
 
             //Abstract Factory
