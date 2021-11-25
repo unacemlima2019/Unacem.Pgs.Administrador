@@ -50,4 +50,39 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
         public string codigoTerritorio { get; set; }
     }
 
+    public class UbigeosProgresolModeloVista
+    {
+        public string codigoDepartamento { get; set; }
+        public string departamento { get; set; }
+
+        public List<ProvinciaProgresolModeloVista> provincias { get; set; }
+
+
+        public UbigeosProgresolModeloVista()
+        {
+            provincias = new List<ProvinciaProgresolModeloVista>();
+        }
+    }
+
+    public class ProvinciaProgresolModeloVista
+    {
+        public string codigoProvincia { get; set; }
+        public string provincia { get; set; }
+
+        public List<DistritoProgresolModeloVista> distritos { get; set; }
+
+        public ProvinciaProgresolModeloVista()
+        {
+            distritos = new List<DistritoProgresolModeloVista>();
+        }
+    }
+
+    public class DistritoProgresolModeloVista
+    {
+        public string codigoDistrito { get; set; }
+        public string distrito { get; set; }
+
+        public string codigoUbigeo { get; set; }       
+    }
+
 }

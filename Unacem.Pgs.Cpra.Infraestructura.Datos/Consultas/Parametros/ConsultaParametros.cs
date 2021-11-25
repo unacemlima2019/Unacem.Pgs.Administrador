@@ -116,13 +116,13 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
             }
             catch (Exception ex)
             {
-                RegistrarError(Mensajes.error_infraestructura_consultaTiposCotizacionConErrores, ex, "ConsultarListadoZonificacionesProgresol");
+                RegistrarError(Mensajes.error_infraestructura_consultaZonificacionesConErrores, ex, "ConsultarListadoZonificacionesProgresol");
 
                 return new ModeloVista<ZonificacionProgresolModeloVista>(
                     new ResultadoConsulta
                     {
                         CodigoResultado = EnumResultadoConsulta.ERROR,
-                        DescripcionResultado = Mensajes.error_infraestructura_consultaTiposCotizacionConErrores
+                        DescripcionResultado = Mensajes.error_infraestructura_consultaZonificacionesConErrores
                     }, null, null);
             }
         }
@@ -151,10 +151,74 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
                     new ResultadoConsulta
                     {
                         CodigoResultado = cantidadFilas == 0 ? EnumResultadoConsulta.SINRESULTADO : EnumResultadoConsulta.OK,
-                        DescripcionResultado = cantidadFilas == 0 ? Mensajes.informacion_infraestructura_consultaTiposCotizacionSinResultados :
-                                                                                Mensajes.informacion_infraestructura_consultarTiposCotizacionConResultados,
+                        DescripcionResultado = cantidadFilas == 0 ? Mensajes.informacion_infraestructura_consultaZonificacionesSinResultados :
+                                                                                Mensajes.informacion_infraestructura_consultarZonificacionesConResultados,
                         TotalRegistros = cantidadFilas
                     }, null, MapeoZonificacionProgresol(resultado));
+            }
+        }
+
+        public async Task<ModeloVista<UbigeosProgresolModeloVista>> ConsultarListadoUbigeosProgresol()
+        {
+            try
+            {
+                return await ConsultarUbigeosProgresol();
+            }
+            catch (Exception ex)
+            {
+                RegistrarError(Mensajes.error_infraestructura_consultaUbigeosProgresolConErrores, ex, "ConsultarListadoUbigeosProgresol");
+
+                return new ModeloVista<UbigeosProgresolModeloVista>(
+                    new ResultadoConsulta
+                    {
+                        CodigoResultado = EnumResultadoConsulta.ERROR,
+                        DescripcionResultado = Mensajes.error_infraestructura_consultaUbigeosProgresolConErrores
+                    }, null, null);
+            }
+        }
+
+        private async Task<ModeloVista<UbigeosProgresolModeloVista>> ConsultarUbigeosProgresol()
+        {
+            using (var conexion = new SqlConnection(_cadenaConexion))
+            {
+                var resultado = await conexion.QueryAsync<dynamic>(
+                                     @"SELECT   UBGPGS.codigoUbigeo
+		                                        ,UBGPGS.codigoDepartamento
+		                                        ,UBGPGS.departamento
+		                                        ,UBGPGS.codigoProvincia
+		                                        ,UBGPGS.provincia
+		                                        ,UBGPGS.codigoDistrito
+		                                        ,UBGPGS.distrito
+                                        FROM	(	SELECT	TRIM(COD_DEPARTAMENTO) + 
+					                                        TRIM(COD_PROVINCIA) + 
+					                                        TRIM(COD_DISTRITO)		AS codigoUbigeo
+					                                        ,COD_DEPARTAMENTO		AS codigoDepartamento 
+					                                        ,DSC_DEPARTAMENTO		AS departamento 
+					                                        ,COD_PROVINCIA			AS codigoProvincia
+					                                        ,DSC_PROVINCIA			AS provincia
+					                                        ,COD_DISTRITO			AS codigoDistrito
+					                                        ,DSC_DISTRITO			AS distrito
+			                                        FROM	PGSTB_TEMP_FUN_CLIENTESPS_SAP (NOLOCK)
+			                                        WHERE	DSC_FLAG_TIENDA				= @DSC_FLAG_TIENDA
+			                                        GROUP BY COD_DEPARTAMENTO
+					                                        ,DSC_DEPARTAMENTO
+					                                        ,COD_PROVINCIA
+					                                        ,DSC_PROVINCIA
+					                                        ,COD_DISTRITO
+					                                        ,DSC_DISTRITO ) UBGPGS
+                                        WHERE	LEN(UBGPGS.codigoProvincia)		!= ''  
+		                                        AND LEN(UBGPGS.codigoDistrito)	!= ''",
+                    new { DSC_FLAG_TIENDA = EnumActivacionLocalProgesol.Activado});
+
+                var cantidadFilas = resultado != null ? resultado.AsList().Count : 0;
+                return new ModeloVista<UbigeosProgresolModeloVista>(
+                    new ResultadoConsulta
+                    {
+                        CodigoResultado = cantidadFilas == 0 ? EnumResultadoConsulta.SINRESULTADO : EnumResultadoConsulta.OK,
+                        DescripcionResultado = cantidadFilas == 0 ? Mensajes.informacion_infraestructura_consultaUbigeosProgresolSinResultados :
+                                                                                Mensajes.informacion_infraestructura_consultarUbigeosProgresolConResultados,
+                        TotalRegistros = cantidadFilas
+                    }, null, MapeoUbigeosProgresol(resultado));
             }
         }
 
@@ -213,11 +277,62 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
         }
 
 
+        private List<UbigeosProgresolModeloVista> MapeoUbigeosProgresol(dynamic pResultadoUbigeos)
+        {
+            var departamentos = new List<UbigeosProgresolModeloVista>();
+            foreach (var departamento in pResultadoUbigeos)
+            {
+                bool existeDepartamento = false;
+                bool existeProvincia = false;
+
+                var departamentoProgresol = departamentos.FirstOrDefault(w => w.departamento == departamento.departamento);
+                if (departamentoProgresol == null)
+                    departamentoProgresol = new UbigeosProgresolModeloVista
+                    {
+                        codigoDepartamento = departamento.codigoDepartamento,
+                        departamento = departamento.departamento
+                    };
+                else
+                    existeDepartamento = true;
+
+                var provincia = departamentoProgresol.provincias.FirstOrDefault(w => w.provincia == departamento.provincia);
+                if (provincia == null)
+                    provincia = new ProvinciaProgresolModeloVista
+                    {
+                        codigoProvincia = departamento.codigoProvincia,
+                        provincia = departamento.provincia,
+                    };
+
+                else
+                    existeProvincia = true;
+
+
+                var distrito = provincia.distritos.FirstOrDefault(w => w.distrito == departamento.distrito);
+                if (distrito == null)
+                    distrito = new DistritoProgresolModeloVista
+                    {
+                        codigoDistrito = departamento.codigoDistrito,
+                        distrito = departamento.distrito,
+                        codigoUbigeo = departamento.codigoUbigeo
+                    };
+
+
+                provincia.distritos.Add(distrito);
+
+                if (!existeProvincia)
+                    departamentoProgresol.provincias.Add(provincia);
+
+                if (!existeDepartamento)
+                    departamentos.Add(departamentoProgresol);
+            }
+
+
+            return departamentos;
+        }
+
         private void RegistrarError(string pMensaje, Exception pException, params object[] pArgumentos)
         {
             LogFactory.CrearLog().LogError(pMensaje, pException, pArgumentos);
         }
-
-
     }
 }

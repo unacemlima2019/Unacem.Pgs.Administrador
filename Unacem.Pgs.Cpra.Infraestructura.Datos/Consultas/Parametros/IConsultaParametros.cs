@@ -12,5 +12,6 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
         Task<ModeloVista<TipoCotizacionListadoModeloVista>> ConsultarListadoTiposCotizacion();
 
         Task<ModeloVista<ZonificacionProgresolModeloVista>> ConsultarListadoZonificacionesProgresol();
+        Task<ModeloVista<UbigeosProgresolModeloVista>> ConsultarListadoUbigeosProgresol();
     }
 }
