@@ -14,8 +14,8 @@ using Unacem.Pgs.Cpra.AplicacionCore.Base;
 namespace Unacem.Pgs.Admin.API.Controllers
 {
     //[RequiereReclamaciones(ClaimTypes.Role, EnumRolTipoProgresol.ProgresolDos)]
-    //[Route("msadmin/[controller]")]
-    //[ApiController]
+    [Route("msadmin/[controller]")]
+    [ApiController]
     public class VideoController : ControllerBase
     {
         readonly IServicioAplicacionVideo _IServicioAplicacionVideo;
