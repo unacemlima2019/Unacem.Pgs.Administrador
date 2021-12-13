@@ -58,11 +58,25 @@ namespace Unacem.Pgs.Admin.API.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> ConsultarListadoZonificacionesProgresol()
         {
-            var zonificacnes = await _IConsultaParametros.ConsultarListadoZonificacionesProgresol();
+            var zonificaciones = await _IConsultaParametros.ConsultarListadoZonificacionesProgresol();
 
-            return zonificacnes.ResultadoConsulta.CodigoResultado == EnumTipoResultado.OK ?
-                    (IActionResult)Ok(zonificacnes) :
-                    (IActionResult)NotFound(zonificacnes);
+            return zonificaciones.ResultadoConsulta.CodigoResultado == EnumTipoResultado.OK ?
+                    (IActionResult)Ok(zonificaciones) :
+                    (IActionResult)NotFound(zonificaciones);
+        }
+
+
+        [Route("consultarListadoUbigeosProgresol")]
+        [HttpGet]
+        [ProducesResponseType(typeof(ModeloVista<UbigeosProgresolModeloVista>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> ConsultarListadoUbigeosProgresol()
+        {
+            var ubigeos = await _IConsultaParametros.ConsultarListadoUbigeosProgresol();
+
+            return ubigeos.ResultadoConsulta.CodigoResultado == EnumTipoResultado.OK ?
+                    (IActionResult)Ok(ubigeos) :
+                    (IActionResult)NotFound(ubigeos);
         }
     }
 }
