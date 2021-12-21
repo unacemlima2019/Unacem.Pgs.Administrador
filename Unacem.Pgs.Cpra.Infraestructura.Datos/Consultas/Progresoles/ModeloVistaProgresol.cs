@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas
+namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Progresoles
 {
-   public class ModeloVistaProgresol
+    public class ModeloVistaProgresol
     {
         //public int CodClientepsSap { get; set; }
         //public string CodPadre { get; set; }

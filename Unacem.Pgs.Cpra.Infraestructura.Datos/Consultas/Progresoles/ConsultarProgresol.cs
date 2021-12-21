@@ -8,9 +8,9 @@ using Unacem.Pgs.Admin.Infraestructura.Datos.Recursos;
 using Unacem.Pgs.Infraestructura.Datos.ConsultasBase;
 using Unacem.Pgs.Infraestructura.Log;
 
-namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas
+namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Progresoles
 {
-    public class ConsultarProgresol: IConsultarProgresol
+    public class ConsultarProgresol : IConsultarProgresol
     {
         private string _cadenaConexion = string.Empty;
 

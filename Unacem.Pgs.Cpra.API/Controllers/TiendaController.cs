@@ -14,7 +14,7 @@ using Unacem.Pgs.Cpra.AplicacionCore.Dto.Tienda;
 namespace Unacem.Pgs.Admin.API.Controllers
 {
 
-    [RequiereReclamaciones(ClaimTypes.Role, EnumRolTipoProgresol.ProgresolDos)]
+    //[RequiereReclamaciones(ClaimTypes.Role, EnumRolTipoProgresol.ProgresolDos)]
     [Route("msadmin/[controller]")]
     [ApiController]
     public class TiendaController : ControllerBase

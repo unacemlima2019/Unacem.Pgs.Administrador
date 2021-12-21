@@ -19,7 +19,7 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Mensajes {
@@ -174,6 +174,60 @@ namespace Unacem.Pgs.Admin.AplicacionCore.Recursos {
         internal static string app_validacion_TiendaSinTipoDePago {
             get {
                 return ResourceManager.GetString("app_validacion_TiendaSinTipoDePago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El código de característica de características de materiales no puede ser vacío..
+        /// </summary>
+        internal static string dominio_validacion_CodigoCaracteristicaDeCaracteristicaMaterialInvalido {
+            get {
+                return ResourceManager.GetString("dominio_validacion_CodigoCaracteristicaDeCaracteristicaMaterialInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El código de material de características de materiales no puede ser vacío..
+        /// </summary>
+        internal static string dominio_validacion_CodigoMaterialDeCaracteristicaMaterialInvalido {
+            get {
+                return ResourceManager.GetString("dominio_validacion_CodigoMaterialDeCaracteristicaMaterialInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El código de material de usos de materiales no puede ser vacío..
+        /// </summary>
+        internal static string dominio_validacion_CodigoMaterialDeUsoMaterialInvalido {
+            get {
+                return ResourceManager.GetString("dominio_validacion_CodigoMaterialDeUsoMaterialInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El código de uso de usos de materiales no puede ser vacío..
+        /// </summary>
+        internal static string dominio_validacion_CodigoUsoDeUsoMaterialInvalido {
+            get {
+                return ResourceManager.GetString("dominio_validacion_CodigoUsoDeUsoMaterialInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La descripción de la característica de material es nulo o vacío..
+        /// </summary>
+        internal static string dominio_validacion_DescripcionCaracteristicaDeCaracteristicaNuloOVacio {
+            get {
+                return ResourceManager.GetString("dominio_validacion_DescripcionCaracteristicaDeCaracteristicaNuloOVacio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La descripción del uso de material es nulo o vacío..
+        /// </summary>
+        internal static string dominio_validacion_DescripcionUsoDeUsoNuloOVacio {
+            get {
+                return ResourceManager.GetString("dominio_validacion_DescripcionUsoDeUsoNuloOVacio", resourceCulture);
             }
         }
         

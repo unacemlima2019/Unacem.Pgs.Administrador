@@ -156,6 +156,24 @@
   <data name="app_validacion_TiendaSinTipoDePago" xml:space="preserve">
     <value>Rango Tipo de pago es invalido para actualizar la relacion Tienda.</value>
   </data>
+  <data name="dominio_validacion_CodigoCaracteristicaDeCaracteristicaMaterialInvalido" xml:space="preserve">
+    <value>El código de característica de características de materiales no puede ser vacío.</value>
+  </data>
+  <data name="dominio_validacion_CodigoMaterialDeCaracteristicaMaterialInvalido" xml:space="preserve">
+    <value>El código de material de características de materiales no puede ser vacío.</value>
+  </data>
+  <data name="dominio_validacion_CodigoMaterialDeUsoMaterialInvalido" xml:space="preserve">
+    <value>El código de material de usos de materiales no puede ser vacío.</value>
+  </data>
+  <data name="dominio_validacion_CodigoUsoDeUsoMaterialInvalido" xml:space="preserve">
+    <value>El código de uso de usos de materiales no puede ser vacío.</value>
+  </data>
+  <data name="dominio_validacion_DescripcionCaracteristicaDeCaracteristicaNuloOVacio" xml:space="preserve">
+    <value>La descripción de la característica de material es nulo o vacío.</value>
+  </data>
+  <data name="dominio_validacion_DescripcionUsoDeUsoNuloOVacio" xml:space="preserve">
+    <value>La descripción del uso de material es nulo o vacío.</value>
+  </data>
   <data name="validacion_TiempoEntregaMenorIgualCero" xml:space="preserve">
     <value>El tiempo de entrega es invalido para la creación de la Tienda</value>
   </data>

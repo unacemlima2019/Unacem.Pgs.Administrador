@@ -13,5 +13,9 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
 
         Task<ModeloVista<ZonificacionProgresolModeloVista>> ConsultarListadoZonificacionesProgresol();
         Task<ModeloVista<UbigeosProgresolModeloVista>> ConsultarListadoUbigeosProgresol();
+
+        Task<ModeloVista<CategorizacionYFiltroDeMaterialesModeloVista>> ConsultarListadoCategorizacionYFiltroDeMateriales(Guid pCategoriaMaterial,
+                                                                        bool pMostrarFiltroCategoria, bool pMostrarFiltroTipo, bool pMostrarFiltroMarca,
+                                                                        bool pMostrarFiltroUso, bool pMostrarFiltroCaracteristica);
     }
 }

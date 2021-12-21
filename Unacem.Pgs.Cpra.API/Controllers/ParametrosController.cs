@@ -78,5 +78,23 @@ namespace Unacem.Pgs.Admin.API.Controllers
                     (IActionResult)Ok(ubigeos) :
                     (IActionResult)NotFound(ubigeos);
         }
+
+        [Route("consultarListadoCategorizacionYFiltroDeMateriales/{pCategoriaMaterial}/{pMostrarFiltroCategoria}/{pMostrarFiltroTipo}/{pMostrarFiltroMarca}/{pMostrarFiltroUso}/{pMostrarFiltroCaracteristica}")]
+        [HttpGet]
+        [ProducesResponseType(typeof(ModeloVista<CategorizacionYFiltroDeMaterialesModeloVista>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> ConsultarListadoCategorizacionYFiltroDeMateriales(Guid pCategoriaMaterial,
+                                                                        bool pMostrarFiltroCategoria, bool pMostrarFiltroTipo, bool pMostrarFiltroMarca,
+                                                                        bool pMostrarFiltroUso, bool pMostrarFiltroCaracteristica)
+        {
+
+            var categorizacionYFiltroDeMateriales = await _IConsultaParametros.ConsultarListadoCategorizacionYFiltroDeMateriales(pCategoriaMaterial,
+                                                                        pMostrarFiltroCategoria, pMostrarFiltroTipo, pMostrarFiltroMarca,
+                                                                        pMostrarFiltroUso, pMostrarFiltroCaracteristica);
+
+            return categorizacionYFiltroDeMateriales.ResultadoConsulta.CodigoResultado == EnumTipoResultado.OK ?
+                    (IActionResult)Ok(categorizacionYFiltroDeMateriales) :
+                    (IActionResult)NotFound(categorizacionYFiltroDeMateriales);
+        }
     }
 }

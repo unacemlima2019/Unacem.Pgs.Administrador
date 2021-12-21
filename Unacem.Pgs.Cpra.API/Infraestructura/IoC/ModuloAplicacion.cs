@@ -6,8 +6,8 @@ using Autofac;
 using Microsoft.Extensions.Configuration;
 using Unacem.Pgs.Admin.AplicacionCore.Agregados.Tienda;
 using Unacem.Pgs.Admin.AplicacionCore.Servicios.Aplicacion;
-using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas;
 using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros;
+using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Progresoles;
 using Unacem.Pgs.Admin.Infraestructura.Datos.Repositorios.Tienda;
 using Unacem.Pgs.Cpra.Infraestructura.Base;
 

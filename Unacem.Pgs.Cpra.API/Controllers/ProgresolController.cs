@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas;
+using Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Progresoles;
 using Unacem.Pgs.AplicacionCore.AplicacionBase;
 using Unacem.Pgs.Cpra.API.Infraestructura.Seguridad;
 using Unacem.Pgs.Cpra.AplicacionCore.Base;

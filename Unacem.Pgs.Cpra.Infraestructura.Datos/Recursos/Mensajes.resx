@@ -123,6 +123,9 @@
   <data name="error_App_ConsultaProgresolSinResultados" xml:space="preserve">
     <value>Lo sentimos la consulta Progresol no devolvio resultado.</value>
   </data>
+  <data name="error_infraestructura_consultaCategorizacionYFiltroDeMaterialesConErrores" xml:space="preserve">
+    <value>Lo sentimos en estos momentos no se pudo realizar la consulta de categorías y filtros para la consulta de materiales. Vuelva a intentarlo mas tarde.</value>
+  </data>
   <data name="error_infraestructura_consultaTiposCotizacionConErrores" xml:space="preserve">
     <value>Lo sentimos en estos momentos no se pudo realizar la consulta de tipos de cotizacion. Vuelva a intentarlo mas tarde.</value>
   </data>
@@ -134,6 +137,12 @@
   </data>
   <data name="error_infraestructura_consultaZonificacionesConErrores" xml:space="preserve">
     <value>Lo sentimos en estos momentos no se pudo realizar la consulta de zonificaciones progresol. Vuelva a intentarlo mas tarde.</value>
+  </data>
+  <data name="informacion_infraestructura_cconsultaCategorizacionYFiltroDeMaterialesSinResultados" xml:space="preserve">
+    <value>Lo sentimos la consulta de categorías y filtros para la consulta de materiales no devolvió resultado.</value>
+  </data>
+  <data name="informacion_infraestructura_consultaCategorizacionYFiltroDeMaterialesConResultados" xml:space="preserve">
+    <value>Se recupero información de categorías y filtros para la consulta de materiales.</value>
   </data>
   <data name="informacion_infraestructura_consultarTiposCotizacionConResultados" xml:space="preserve">
     <value>Se recupero información de tipos de cotización.</value>

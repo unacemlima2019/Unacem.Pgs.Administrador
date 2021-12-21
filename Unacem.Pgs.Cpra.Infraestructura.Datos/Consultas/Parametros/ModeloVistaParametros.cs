@@ -85,4 +85,60 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
         public string codigoUbigeo { get; set; }       
     }
 
+
+    public class CategorizacionYFiltroDeMaterialesModeloVista
+    {
+        public List<CategoriaModeloVista> categorias { get; set; }
+        public List<MarcaModeloVista> marcas { get; set; }
+        public List<TipoModeloVista> tipos { get; set; }
+        public List<UsoModeloVista> usos { get; set; }
+        public List<CaracteristicasModeloVista> caracteristicas { get; set; }
+
+        public CategorizacionYFiltroDeMaterialesModeloVista()
+        {
+            categorias = new List<CategoriaModeloVista>();
+            marcas = new List<MarcaModeloVista>();
+            tipos = new List<TipoModeloVista>();
+            usos = new List<UsoModeloVista>();
+            caracteristicas = new List<CaracteristicasModeloVista>();
+        }
+    }
+
+
+    public class CategoriaModeloVista
+    {
+        public Guid id { get; set; }
+        public string codigoCategoriaSap { get; set; }
+        public string nombreCategoria { get; set; }
+        public string rutaImagen { get; set; }
+    }
+
+    public class MarcaModeloVista
+    {
+        public Guid id { get; set; }
+        public string codigoMarcaSap { get; set; }
+        public string nombreMarca { get; set; }
+        public string rutaImagen { get; set; } //nuevo
+    }
+
+    public class TipoModeloVista
+    {
+        public Guid id { get; set; }
+        public string codigoTipoSap { get; set; }
+        public string nombreTipo { get; set; }
+    }
+
+    public class UsoModeloVista
+    {
+        public Guid id { get; set; }
+        public string codigoUsoSap { get; set; }
+        public string descripcionUso { get; set; }
+    }
+
+    public class CaracteristicasModeloVista
+    {
+        public Guid id { get; set; }
+        public string codigoCaracteristicaSap { get; set; }
+        public string descripcionCaracteristica { get; set; }
+    }
 }

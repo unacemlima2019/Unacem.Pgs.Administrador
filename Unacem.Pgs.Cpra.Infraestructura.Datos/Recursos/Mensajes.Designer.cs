@@ -19,7 +19,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Recursos {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Mensajes {
@@ -79,6 +79,15 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Recursos {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos en estos momentos no se pudo realizar la consulta de categorías y filtros para la consulta de materiales. Vuelva a intentarlo mas tarde..
+        /// </summary>
+        internal static string error_infraestructura_consultaCategorizacionYFiltroDeMaterialesConErrores {
+            get {
+                return ResourceManager.GetString("error_infraestructura_consultaCategorizacionYFiltroDeMaterialesConErrores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Lo sentimos en estos momentos no se pudo realizar la consulta de tipos de cotizacion. Vuelva a intentarlo mas tarde..
         /// </summary>
         internal static string error_infraestructura_consultaTiposCotizacionConErrores {
@@ -111,6 +120,26 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Recursos {
         internal static string error_infraestructura_consultaZonificacionesConErrores {
             get {
                 return ResourceManager.GetString("error_infraestructura_consultaZonificacionesConErrores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lo sentimos la consulta de categorías y filtros para la consulta de materiales no devolvió resultado..
+        /// </summary>
+        internal static string informacion_infraestructura_cconsultaCategorizacionYFiltroDeMaterialesSinResultados {
+            get {
+                return ResourceManager.GetString("informacion_infraestructura_cconsultaCategorizacionYFiltroDeMaterialesSinResultad" +
+                        "os", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se recupero información de categorías y filtros para la consulta de materiales..
+        /// </summary>
+        internal static string informacion_infraestructura_consultaCategorizacionYFiltroDeMaterialesConResultados {
+            get {
+                return ResourceManager.GetString("informacion_infraestructura_consultaCategorizacionYFiltroDeMaterialesConResultado" +
+                        "s", resourceCulture);
             }
         }
         

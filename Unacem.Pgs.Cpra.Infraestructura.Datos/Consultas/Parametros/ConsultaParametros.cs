@@ -222,6 +222,108 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
             }
         }
 
+        public async Task<ModeloVista<CategorizacionYFiltroDeMaterialesModeloVista>> ConsultarListadoCategorizacionYFiltroDeMateriales(Guid pCategoriaMaterial,
+                                                                        bool pMostrarFiltroCategoria, bool pMostrarFiltroTipo, bool pMostrarFiltroMarca,
+                                                                        bool pMostrarFiltroUso, bool pMostrarFiltroCaracteristica)
+        {
+            try
+            {
+                return await ConsultarCategorizacionYFiltroDeMateriales(pCategoriaMaterial,
+                                                                        pMostrarFiltroCategoria, pMostrarFiltroTipo, pMostrarFiltroMarca,
+                                                                        pMostrarFiltroUso, pMostrarFiltroCaracteristica);
+            }
+            catch (Exception ex)
+            {
+                RegistrarError(Mensajes.error_infraestructura_consultaCategorizacionYFiltroDeMaterialesConErrores, ex, "ConsultarListadoCategorizacionYFiltroDeMateriales");
+
+                return new ModeloVista<CategorizacionYFiltroDeMaterialesModeloVista>(
+                    new ResultadoConsulta
+                    {
+                        CodigoResultado = EnumResultadoConsulta.ERROR,
+                        DescripcionResultado = Mensajes.error_infraestructura_consultaCategorizacionYFiltroDeMaterialesConErrores
+                    }, null, null);
+            }
+        }
+
+        private async Task<ModeloVista<CategorizacionYFiltroDeMaterialesModeloVista>> ConsultarCategorizacionYFiltroDeMateriales(Guid pCategoriaMaterial,
+                                                                        bool pMostrarFiltroCategoria, bool pMostrarFiltroTipo, bool pMostrarFiltroMarca, 
+                                                                        bool pMostrarFiltroUso, bool pMostrarFiltroCaracteristica)
+        {
+            using (var conexion = new SqlConnection(_cadenaConexion))
+            {
+                var resultado = await conexion.QueryMultipleAsync(
+                                     @"SELECT	COD_CATEGORIA_MATERIAL	AS id
+		                                        ,COD_CATEGORIA_SAP		AS codigoCategoriaSap
+		                                        ,DSC_NOMBRE				AS nombreCategoria
+		                                        ,DSC_IMAGEN				AS rutaImagen
+                                        FROM	PGSTB_CATEGORIA_MATERIAL (NOLOCK)
+                                        WHERE	FLAG_ACTIVO				= 'S';
+
+                                        SELECT	COD_MARCA_MATERIAL		AS id
+		                                        ,COD_MARCA_SAP			AS codigoMarcaSap
+		                                        ,DSC_NOMBRE				AS nombreMarca
+		                                        ,'DSC_IMAGEN'			AS rutaImagen
+                                        FROM	PGSTB_MARCA_MATERIAL (NOLOCK)
+                                        WHERE	FLAG_ACTIVO				= 'S'
+		                                        AND COD_MARCA_MATERIAL	IN(SELECT	DISTINCT COD_MARCA_MATERIAL 
+									                                        FROM	PGSTB_MATERIAL (NOLOCK) 
+									                                        WHERE	COD_CATEGORIA_MATERIAL	= @COD_CATEGORIA_MATERIAL
+											                                        AND FLAG_ACTIVO			= 'S');
+
+                                        SELECT	COD_TIPO_MATERIAL		AS id
+		                                        ,COD_TIPO_SAP			AS codigoTipoSap
+		                                        ,DSC_NOMBRE_TIPO		AS nombreTipo
+                                        FROM	PGSTB_TIPO_MATERIAL		(NOLOCK)
+                                        WHERE	FLAG_ACTIVO				= 'S'
+		                                        AND COD_TIPO_MATERIAL	IN(SELECT	DISTINCT COD_TIPO_MATERIAL 
+									                                        FROM	PGSTB_MATERIAL (NOLOCK) 
+									                                        WHERE	COD_CATEGORIA_MATERIAL	= @COD_CATEGORIA_MATERIAL
+											                                        AND FLAG_ACTIVO			= 'S');
+
+                                        SELECT	COD_USO					AS id
+		                                        ,COD_USO_SAP			AS codigoUsoSap
+		                                        ,DSC_USO				AS descripcionUso
+                                        FROM	PGSTB_USO             (NOLOCK)
+                                        WHERE	FLAG_ACTIVO				= 'S'
+		                                        AND COD_USO				IN(SELECT	UM.COD_USO 
+									                                        FROM	PGSTB_MATERIAL					(NOLOCK) M
+											                                        INNER JOIN PGSTB_USO_MATERIAL	(NOLOCK) UM ON M.COD_MATERIAL = UM.COD_MATERIAL
+									                                        WHERE	M.COD_CATEGORIA_MATERIAL	= @COD_CATEGORIA_MATERIAL
+											                                        AND M.FLAG_ACTIVO			= 'S');
+
+                                        SELECT	COD_CARACTERISTICA		AS id
+		                                        ,COD_CARACTERISTICA_SAP	AS codigoCaracteristicaSap
+		                                        ,DSC_CARACTERISTICA		AS descripcionCaracteristica
+                                        FROM	PGSTB_CARACTERISTICA	(NOLOCK)
+                                        WHERE	FLAG_ACTIVO				= 'S'
+		                                        AND COD_CARACTERISTICA	IN(SELECT	CM.COD_CARACTERISTICA 
+									                                        FROM	PGSTB_MATERIAL								(NOLOCK) M
+											                                        INNER JOIN PGSTB_CARACTERISTICA_MATERIAL	(NOLOCK) CM ON M.COD_MATERIAL = CM.COD_MATERIAL
+									                                        WHERE	M.COD_CATEGORIA_MATERIAL	= @COD_CATEGORIA_MATERIAL
+											                                        AND M.FLAG_ACTIVO			= 'S');", 
+                                     new
+                                     {
+                                         COD_CATEGORIA_MATERIAL = pCategoriaMaterial
+                                     });
+
+                var categorias = pMostrarFiltroCategoria? resultado.Read<CategoriaModeloVista>().ToList(): new List<CategoriaModeloVista>();
+                var marcas = pMostrarFiltroMarca? resultado.Read<MarcaModeloVista>().ToList(): new List<MarcaModeloVista>();
+                var tipos = pMostrarFiltroTipo? resultado.Read<TipoModeloVista>().ToList(): new List<TipoModeloVista>();
+                var usos = pMostrarFiltroUso? resultado.Read<UsoModeloVista>().ToList() : new List<UsoModeloVista>();
+                var caracteristicas = pMostrarFiltroCaracteristica? resultado.Read<CaracteristicasModeloVista>().ToList(): new List<CaracteristicasModeloVista>();
+
+                var cantidadFilas = resultado != null ? categorias.Count + marcas.Count +
+                                                        tipos.Count + usos.Count + caracteristicas.Count: 0;
+                return new ModeloVista<CategorizacionYFiltroDeMaterialesModeloVista>(
+                    new ResultadoConsulta
+                    {
+                        CodigoResultado = cantidadFilas == 0 ? EnumResultadoConsulta.SINRESULTADO : EnumResultadoConsulta.OK,
+                        DescripcionResultado = cantidadFilas == 0 ? Mensajes.informacion_infraestructura_cconsultaCategorizacionYFiltroDeMaterialesSinResultados :
+                                                                                Mensajes.informacion_infraestructura_consultaCategorizacionYFiltroDeMaterialesConResultados,
+                        TotalRegistros = cantidadFilas
+                    }, MapeoCategorizacionYFiltroDeMaterialesListado(categorias, marcas, tipos, usos, caracteristicas), null);
+            }
+        }
         private List<ZonificacionProgresolModeloVista> MapeoZonificacionProgresol(dynamic pResultadoZonificacion)
         {
             var zonificacionesProgresol = new List<ZonificacionProgresolModeloVista>();
@@ -328,6 +430,22 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
 
 
             return departamentos;
+        }
+
+        public CategorizacionYFiltroDeMaterialesModeloVista MapeoCategorizacionYFiltroDeMaterialesListado(List<CategoriaModeloVista> pCategorias,
+                                                                        List<MarcaModeloVista> pMarcas,
+                                                                        List<TipoModeloVista> pTipos,
+                                                                        List<UsoModeloVista> pUsos,
+                                                                        List<CaracteristicasModeloVista> pCaracteristicas)
+        {
+            var categorizacionYFiltradoMateriales = new CategorizacionYFiltroDeMaterialesModeloVista();
+            categorizacionYFiltradoMateriales.categorias = pCategorias;
+            categorizacionYFiltradoMateriales.marcas = pMarcas;
+            categorizacionYFiltradoMateriales.tipos = pTipos;
+            categorizacionYFiltradoMateriales.usos = pUsos;
+            categorizacionYFiltradoMateriales.caracteristicas = pCaracteristicas;
+
+            return categorizacionYFiltradoMateriales;
         }
 
         private void RegistrarError(string pMensaje, Exception pException, params object[] pArgumentos)

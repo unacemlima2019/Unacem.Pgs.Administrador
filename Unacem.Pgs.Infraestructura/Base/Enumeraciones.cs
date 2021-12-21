@@ -19,7 +19,7 @@ namespace Unacem.Pgs.Infraestructura.Base
         public const string PgsAppWebPublico = "PGS-AWPub";
         public const string PgsWebApiPublico = "PGS-WAPub";
         public const string PgsMsVentas = "PGS-MsVta";
-        public const string PgsMsAdminTiendas = "PGS-MsAdminTienda";
+        public const string PgsMsAdminTiendas = "PGS-MsAdm";
     }
 
     public struct EnumUsuarioDefault
