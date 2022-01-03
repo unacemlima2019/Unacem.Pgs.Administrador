@@ -258,7 +258,8 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
 		                                        ,DSC_IMAGEN				AS rutaImagen
                                                 ,NUM_ORDEN              AS orden
                                         FROM	PGSTB_CATEGORIA_MATERIAL (NOLOCK)
-                                        WHERE	FLAG_ACTIVO				= 'S';
+                                        WHERE	FLAG_ACTIVO				= 'S'
+                                        ORDER BY NUM_ORDEN;
 
                                         SELECT	COD_MARCA_MATERIAL		AS id
 		                                        ,COD_MARCA_SAP			AS codigoMarcaSap
