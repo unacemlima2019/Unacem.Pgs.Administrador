@@ -111,6 +111,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
         public string codigoCategoriaSap { get; set; }
         public string nombreCategoria { get; set; }
         public string rutaImagen { get; set; }
+        public int orden { get; set; }
     }
 
     public class MarcaModeloVista

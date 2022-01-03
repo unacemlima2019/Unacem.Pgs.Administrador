@@ -256,6 +256,7 @@ namespace Unacem.Pgs.Admin.Infraestructura.Datos.Consultas.Parametros
 		                                        ,COD_CATEGORIA_SAP		AS codigoCategoriaSap
 		                                        ,DSC_NOMBRE				AS nombreCategoria
 		                                        ,DSC_IMAGEN				AS rutaImagen
+                                                ,NUM_ORDEN              AS orden
                                         FROM	PGSTB_CATEGORIA_MATERIAL (NOLOCK)
                                         WHERE	FLAG_ACTIVO				= 'S';
 
